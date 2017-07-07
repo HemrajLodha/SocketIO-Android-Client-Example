@@ -9,9 +9,11 @@ Real time communication using Socket.IO
 - Manage messages in queue and resend after connected to socket if lost due to network issue.
 
 Get Server code from following link 
+
 [SocketIO Server Example](https://github.com/HemrajLodha/SocketIO-Server-Example)
 
 For read configuration setup and documentation go through following link
+
 [SocketIO Docs](https://socket.io/docs/)
 
 #### Note:- We are working on it and update for group chat and broadcasting in next build.

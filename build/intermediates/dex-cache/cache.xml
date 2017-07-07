@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\PractiseProj\SocketIO\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3a8279da69b75ff78376b681c197d72368c5fa1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\PractiseProj\SocketIO\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bc8cbfd4e3fddade7c1d5a8f10212b435e77dcae">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_1b34916f276a8137cf16c5a371813a7a1140a8cc\classes.dex" />
+    </item>
+
+</items>
