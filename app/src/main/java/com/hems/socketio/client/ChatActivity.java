@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.hems.socketio.client.adapter.ChatRecyclerAdapter;
 import com.hems.socketio.client.interfaces.OnItemClickListener;
 import com.hems.socketio.client.model.Chat;
-import com.hems.socketio.client.model.Contact;
+import com.hems.socketio.client.model.Message;
 import com.hems.socketio.client.service.SocketIOService;
 import com.hems.socketio.client.utils.SessionManager;
 
@@ -28,10 +28,10 @@ public class ChatActivity extends AppCompatActivity implements OnItemClickListen
     public static final String EXTRA_DATA = "extra_data";
     private RecyclerView recyclerView;
     private ChatRecyclerAdapter adapter;
-    private ArrayList<Chat> chatList;
+    private ArrayList<Message> chatList;
     private EditText etMessage;
     private Button btnSend;
-    private Contact mContact;
+    private Chat mChat;
     private SessionManager sessionManager;
 
     @Override
@@ -39,9 +39,10 @@ public class ChatActivity extends AppCompatActivity implements OnItemClickListen
         super.onCreate(savedInstanceState);
 
         if (getIntent() == null) {
-            Toast.makeText(this, "Chat can't start", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Message can't start", Toast.LENGTH_SHORT).show();
             finish();
         }
+
         sessionManager = SessionManager.newInstance(this);
 
         Intent service = new Intent(this, SocketIOService.class);
@@ -49,11 +50,11 @@ public class ChatActivity extends AppCompatActivity implements OnItemClickListen
         service.putExtra(SocketIOService.EXTRA_USER_NAME, sessionManager.getUserId());
         startService(service);
 
-        mContact = getIntent().getParcelableExtra(EXTRA_DATA);
+        mChat = getIntent().getParcelableExtra(EXTRA_DATA);
 
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(mContact.getName());
+        toolbar.setTitle(mChat.getName());
         setSupportActionBar(toolbar);
         etMessage = (EditText) findViewById(R.id.et_message);
         btnSend = (Button) findViewById(R.id.send);
@@ -79,13 +80,13 @@ public class ChatActivity extends AppCompatActivity implements OnItemClickListen
                 return;
             }
 
-            Chat chat = new Chat.Builder()
-                    .receiverId(mContact.getId())
+            Message chat = new Message.Builder()
+                    .receiverId(mChat.getId())
                     .senderId(sessionManager.getUserId())
                     .senderName(sessionManager.getName())
-                    .receiverName(mContact.getName())
+                    .receiverName(mChat.getName())
                     .message(etMessage.getText().toString())
-                    .type(Chat.TYPE_CHAT)
+                    .type(mChat.getType())
                     .time(System.currentTimeMillis())
                     .build();
 
@@ -99,7 +100,7 @@ public class ChatActivity extends AppCompatActivity implements OnItemClickListen
         }
     }
 
-    private void addItemToList(Chat chat) {
+    private void addItemToList(Message chat) {
         chatList.add(chat);
         adapter.notifyDataSetChanged();
         recyclerView.scrollToPosition(chatList.size() - 1);
@@ -129,13 +130,13 @@ public class ChatActivity extends AppCompatActivity implements OnItemClickListen
                 String senderId = intent.getStringExtra("sender_id");
                 String receiverId = intent.getStringExtra("receiver_id");
                 String message = intent.getStringExtra("message");
-                Chat chat = new Chat.Builder()
+                Message chat = new Message.Builder()
                         .receiverId(receiverId)
                         .senderId(senderId)
-                        .senderName(mContact.getName())
+                        .senderName(mChat.getName())
                         .receiverName(sessionManager.getName())
                         .message(message)
-                        .type(Chat.TYPE_CHAT)
+                        .type(mChat.getType())
                         .time(System.currentTimeMillis())
                         .build();
                 addItemToList(chat);

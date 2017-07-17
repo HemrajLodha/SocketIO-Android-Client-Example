@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.hems.socketio.client.R;
 import com.hems.socketio.client.base.BaseRecyclerAdapter;
 import com.hems.socketio.client.interfaces.OnItemClickListener;
-import com.hems.socketio.client.model.Chat;
+import com.hems.socketio.client.model.Message;
 import com.hems.socketio.client.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -19,16 +19,16 @@ import java.util.ArrayList;
  * Created by intel on 04-Mar-17.
  */
 
-public class ChatRecyclerAdapter extends BaseRecyclerAdapter<ChatRecyclerAdapter.ViewHolder, Chat> {
+public class ChatRecyclerAdapter extends BaseRecyclerAdapter<ChatRecyclerAdapter.ViewHolder, Message> {
     private static final int TYPE_ITEM_ME = 0, TYPE_ITEM_YOU = 1;
     private SessionManager sessionManager;
 
-    public ChatRecyclerAdapter(Context context, ArrayList<Chat> items, OnItemClickListener onClickListener) {
+    public ChatRecyclerAdapter(Context context, ArrayList<Message> items, OnItemClickListener onClickListener) {
         super(context, items, onClickListener);
         sessionManager = SessionManager.newInstance(context);
     }
 
-    class ViewHolder extends BaseRecyclerAdapter<BaseRecyclerAdapter.ViewHolder, Chat>.ViewHolder {
+    class ViewHolder extends BaseRecyclerAdapter<BaseRecyclerAdapter.ViewHolder, Message>.ViewHolder {
         TextView tvName, tvMessage;
 
         public ViewHolder(View view, OnItemClickListener onClickListener) {
@@ -38,7 +38,7 @@ public class ChatRecyclerAdapter extends BaseRecyclerAdapter<ChatRecyclerAdapter
         }
 
         @Override
-        public void bindData(Chat data) {
+        public void bindData(Message data) {
             tvName.setText(data.getSenderName());
             tvMessage.setText(data.getMessage());
         }

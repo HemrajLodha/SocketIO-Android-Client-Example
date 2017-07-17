@@ -3,48 +3,44 @@ package com.hems.socketio.client.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+import com.hems.socketio.client.enums.ChatType;
+
+import java.util.ArrayList;
+
 /**
- * Created by planet on 6/8/2017.
+ * Created by planet on 7/14/2017.
  */
 
-public class Chat implements Parcelable {
-    public static final String TYPE_USER_MESSAGE = "user-message";
-    public static final String TYPE_CHAT = "chat";
-    public static final int SUCCESS = 1, FAILED = 0, SENDING = 2;
-    private String mReceiverId;
-    private String mSenderId;
-    private String mSenderName;
-    private String mReceiverName;
-    private String mMessage;
-    private int mStatus;
-    private String mType;
-    private long mTime;
-
-    private Chat() {
-    }
-
+public class Chat extends Response<ArrayList<Chat>> implements Parcelable {
+    private String id;
+    private ChatType type;
+    private String name;
+    private String[] users;
+    @SerializedName("last_message")
+    private String lastMessage;
+    @SerializedName("update_date")
+    private String updateDate;
 
     protected Chat(Parcel in) {
-        mReceiverId = in.readString();
-        mSenderId = in.readString();
-        mSenderName = in.readString();
-        mReceiverName = in.readString();
-        mMessage = in.readString();
-        mStatus = in.readInt();
-        mType = in.readString();
-        mTime = in.readLong();
+        id = in.readString();
+        type = ChatType.getChatType(in.readInt());
+        name = in.readString();
+        users = in.createStringArray();
+        lastMessage = in.readString();
+        updateDate = in.readString();
+        data = in.createTypedArrayList(Chat.CREATOR);
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mReceiverId);
-        dest.writeString(mSenderId);
-        dest.writeString(mSenderName);
-        dest.writeString(mReceiverName);
-        dest.writeString(mMessage);
-        dest.writeInt(mStatus);
-        dest.writeString(mType);
-        dest.writeLong(mTime);
+        dest.writeString(id);
+        dest.writeInt(type.getValue());
+        dest.writeString(name);
+        dest.writeStringArray(users);
+        dest.writeString(lastMessage);
+        dest.writeString(updateDate);
+        dest.writeTypedList(data);
     }
 
     @Override
@@ -64,90 +60,51 @@ public class Chat implements Parcelable {
         }
     };
 
-    public String getMessage() {
-        return mMessage;
+    public String getId() {
+        return id;
     }
 
-    public String getReceiverId() {
-        return mReceiverId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getSenderId() {
-        return mSenderId;
+    public ChatType getType() {
+        return type;
     }
 
-    public String getSenderName() {
-        return mSenderName;
+    public void setType(ChatType type) {
+        this.type = type;
     }
 
-    public String getReceiverName() {
-        return mReceiverName;
+    public String getName() {
+        return name;
     }
 
-    public long getTime() {
-        return mTime;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return mType;
+    public String[] getUsers() {
+        return users;
     }
 
-    public static class Builder {
-        private String mReceiverId;
-        private String mSenderId;
-        private String mSenderName;
-        private String mReceiverName;
-        private String mMessage;
-        private int mStatus;
-        private String mType;
-        private long mTime;
+    public void setUsers(String[] users) {
+        this.users = users;
+    }
 
-        public Builder receiverId(String mReceiverId) {
-            this.mReceiverId = mReceiverId;
-            return this;
-        }
+    public String getLastMessage() {
+        return lastMessage;
+    }
 
-        public Builder senderId(String mSenderId) {
-            this.mSenderId = mSenderId;
-            return this;
-        }
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
+    }
 
-        public Builder senderName(String mSenderName) {
-            this.mSenderName = mSenderName;
-            return this;
-        }
+    public String getUpdateDate() {
+        return updateDate;
+    }
 
-        public Builder receiverName(String mReceiverName) {
-            this.mReceiverName = mReceiverName;
-            return this;
-        }
-
-        public Builder message(String mMessage) {
-            this.mMessage = mMessage;
-            return this;
-        }
-
-        public Builder type(String mType) {
-            this.mType = mType;
-            return this;
-        }
-
-        public Builder time(long mTime) {
-            this.mTime = mTime;
-            return this;
-        }
-
-        public Chat build() {
-            Chat message = new Chat();
-            message.mType = mType;
-            message.mStatus = SENDING;
-            message.mReceiverId = mReceiverId;
-            message.mSenderId = mSenderId;
-            message.mSenderName = mSenderName;
-            message.mReceiverName = mReceiverName;
-            message.mMessage = mMessage;
-            message.mTime = mTime;
-            return message;
-        }
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 }

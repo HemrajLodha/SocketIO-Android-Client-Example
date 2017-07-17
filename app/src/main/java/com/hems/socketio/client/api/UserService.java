@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 public interface UserService {
 
     @GET("/api/user")
-    Call<Contact> getContactList(@Query("username") String username);
+    Call<Contact> getContactList(@Query("id") String id);
 
     @POST("/api/login")
     @FormUrlEncoded

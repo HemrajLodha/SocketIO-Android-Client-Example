@@ -11,7 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
-import com.hems.socketio.client.model.Chat;
+import com.hems.socketio.client.model.Message;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +44,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
     private Socket mSocket;
     private Boolean isConnected = true;
     private boolean mTyping;
-    private Queue<Chat> chatQueue;
+    private Queue<Message> chatQueue;
 
 
     private Looper mServiceLooper;
@@ -125,7 +125,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand");
         if (intent != null) {
-            Chat chat = intent.getParcelableExtra(EXTRA_DATA);
+            Message chat = intent.getParcelableExtra(EXTRA_DATA);
             int eventType = intent.getIntExtra(EXTRA_EVENT_TYPE, EVENT_TYPE_JOIN);
             if (eventType == EVENT_TYPE_JOIN) {
                 mUserId = intent.getStringExtra(EXTRA_USER_NAME);
@@ -172,7 +172,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
         resendQueueMessages();
     }
 
-    private void sendMessage(Chat message) {
+    private void sendMessage(Message message) {
         if (null == mSocket) return;
         JSONObject chat = new JSONObject();
         try {
@@ -187,7 +187,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
     }
 
     private void resendQueueMessages() {
-        Chat chat = chatQueue.poll();
+        Message chat = chatQueue.poll();
         if (chat != null) {
             sendMessage(chat);
             resendQueueMessages();

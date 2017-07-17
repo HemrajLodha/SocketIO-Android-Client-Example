@@ -1,5 +1,7 @@
 package com.hems.socketio.client;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.hems.socketio.client.adapter.ChatListRecyclerAdapter;
 import com.hems.socketio.client.adapter.ContactRecyclerAdapter;
+import com.hems.socketio.client.api.ChatService;
 import com.hems.socketio.client.api.RetrofitCall;
 import com.hems.socketio.client.api.RetrofitCallback;
 import com.hems.socketio.client.api.Service;
 import com.hems.socketio.client.api.UserService;
+import com.hems.socketio.client.enums.ChatType;
 import com.hems.socketio.client.interfaces.OnItemClickListener;
+import com.hems.socketio.client.model.Chat;
 import com.hems.socketio.client.model.Contact;
+import com.hems.socketio.client.model.Response;
 import com.hems.socketio.client.service.SocketIOService;
 import com.hems.socketio.client.utils.SessionManager;
 
@@ -23,9 +30,10 @@ import java.util.ArrayList;
 
 public class ChatListActivity extends AppCompatActivity implements OnItemClickListener {
     private RecyclerView recyclerView;
-    private ContactRecyclerAdapter adapter;
-    private ArrayList<Contact> list;
+    private ChatListRecyclerAdapter adapter;
+    private ArrayList<Chat> list;
     private SessionManager sessionManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +57,37 @@ public class ChatListActivity extends AppCompatActivity implements OnItemClickLi
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        adapter = new ContactRecyclerAdapter(this, list, this);
+        adapter = new ChatListRecyclerAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
-        getContacts();
+        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatListActivity.this, ContactListActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list.clear();
+        getChats();
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Contact contact = adapter.getItem(position);
+        Chat chat = adapter.getItem(position);
         Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra(ChatActivity.EXTRA_DATA, contact);
+        intent.putExtra(ChatActivity.EXTRA_DATA, chat);
         startActivity(intent);
     }
 
-    private void getContacts() {
-        UserService request = (UserService) RetrofitCall.createRequest(UserService.class);
-        request.getContactList(sessionManager.getUserName()).enqueue(new RetrofitCallback<Contact>() {
+    private void getChats() {
+        ChatService request = (ChatService) RetrofitCall.createRequest(ChatService.class);
+        request.getChatList(sessionManager.getUserId()).enqueue(new RetrofitCallback<Chat>() {
             @Override
-            public void onResponse(Contact response) {
+            public void onResponse(Chat response) {
                 if (response.getStatus() == Service.SUCCESS) {
                     list.addAll(response.getData());
                     adapter.notifyDataSetChanged();
@@ -81,5 +102,7 @@ public class ChatListActivity extends AppCompatActivity implements OnItemClickLi
             }
         });
     }
+
+
 
 }

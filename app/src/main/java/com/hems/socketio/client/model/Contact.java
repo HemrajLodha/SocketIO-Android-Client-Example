@@ -9,10 +9,11 @@ import java.util.ArrayList;
  * Created by planet on 7/5/2017.
  */
 
-public class Contact extends Response<ArrayList<Contact>>  implements Parcelable {
-    private String id,name,username,email,contact;
+public class Contact extends Response<ArrayList<Contact>> implements Parcelable {
+    private String id, name, username, email, contact;
     private int age;
     private Contact meta;
+    private boolean selected;
 
     protected Contact(Parcel in) {
         id = in.readString();
@@ -23,6 +24,7 @@ public class Contact extends Response<ArrayList<Contact>>  implements Parcelable
         age = in.readInt();
         meta = in.readParcelable(Contact.class.getClassLoader());
         data = in.createTypedArrayList(Contact.CREATOR);
+        selected = in.readByte() != 0;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class Contact extends Response<ArrayList<Contact>>  implements Parcelable
         dest.writeInt(age);
         dest.writeParcelable(meta, flags);
         dest.writeTypedList(data);
+        dest.writeByte((byte) (selected ? 1 : 0));
     }
 
     @Override
@@ -108,5 +111,13 @@ public class Contact extends Response<ArrayList<Contact>>  implements Parcelable
 
     public void setMeta(Contact meta) {
         this.meta = meta;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
