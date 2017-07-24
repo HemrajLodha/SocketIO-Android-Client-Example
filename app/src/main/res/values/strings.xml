@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SocketIO</string>
+    <string name="app_name">SocketIO Chat</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_activity_chat_list">ChatListActivity</string>
@@ -19,5 +19,11 @@
         completions."
     </string>
 
+    <string name="ok">OK</string>
+    <string name="chooser_title">Choose File</string>
+
+    <string name="menu_title_chat_options">Chat Options</string>
     <string name="menu_title_create">Create Chat</string>
+    <string name="menu_title_delete_chat">Delete Chat</string>
+    <string name="typing_message">%s is typing…</string>
 </resources>

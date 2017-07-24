@@ -4,7 +4,8 @@ SocketIO Android Client Example
 ## Features
 Real time communication using Socket.IO
 
-- Private Text Messeging (User to User).
+- Private and Group Text Messeging
+- Private and Group Image Messeging
 - Handle socket using HandlerThread that checks socket connection in a time frame and reconnect if not connected.
 - Manage messages in queue and resend after connected to socket if lost due to network issue.
 
@@ -15,5 +16,3 @@ Get Server code from following link
 For read configuration setup and documentation go through following link
 
 [SocketIO Docs](https://socket.io/docs/)
-
-#### Note:- We are working on it and update for group chat and broadcasting in next build.

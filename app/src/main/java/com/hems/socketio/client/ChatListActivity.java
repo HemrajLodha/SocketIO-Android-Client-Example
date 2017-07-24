@@ -8,6 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.ActionMode;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,12 +33,12 @@ import com.hems.socketio.client.utils.SessionManager;
 
 import java.util.ArrayList;
 
-public class ChatListActivity extends AppCompatActivity implements OnItemClickListener {
+public class ChatListActivity extends AppCompatActivity implements ChatListRecyclerAdapter.OnItemClickListener {
     private RecyclerView recyclerView;
     private ChatListRecyclerAdapter adapter;
     private ArrayList<Chat> list;
     private SessionManager sessionManager;
-
+    private Chat mChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +73,33 @@ public class ChatListActivity extends AppCompatActivity implements OnItemClickLi
         });
     }
 
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle(R.string.menu_title_chat_options);
+        menu.add(Menu.NONE, 101, 1, R.string.menu_title_delete_chat);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == 101) {
+            if (mChat.getType() == ChatType.PERSONAL) {
+                Toast.makeText(this, "Personal chat can not be deleted!", Toast.LENGTH_SHORT).show();
+            } else if (mChat != null) {
+                deleteGroupChat(mChat.getId());
+            }
+        }
+        return super.onContextItemSelected(item);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        getChatList();
+    }
+
+    private void getChatList() {
         list.clear();
         getChats();
     }
@@ -81,6 +110,33 @@ public class ChatListActivity extends AppCompatActivity implements OnItemClickLi
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra(ChatActivity.EXTRA_DATA, chat);
         startActivity(intent);
+    }
+
+    @Override
+    public void onLongClick(View v, int position) {
+        mChat = adapter.getItem(position);
+        registerForContextMenu(v);
+    }
+
+    private void deleteGroupChat(String chatId) {
+        ChatService request = (ChatService) RetrofitCall.createRequest(ChatService.class);
+        request.deleteChat(sessionManager.getUserId(), chatId).enqueue(new RetrofitCallback<Chat>() {
+            @Override
+            public void onResponse(Chat response) {
+                if (response.getStatus() == Service.SUCCESS) {
+                    Toast.makeText(ChatListActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                    getChatList();
+                } else {
+                    Toast.makeText(ChatListActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                mChat = null;
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                mChat = null;
+            }
+        });
     }
 
     private void getChats() {
@@ -102,7 +158,4 @@ public class ChatListActivity extends AppCompatActivity implements OnItemClickLi
             }
         });
     }
-
-
-
 }

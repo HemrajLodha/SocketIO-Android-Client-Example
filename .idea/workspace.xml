@@ -46,40 +46,36 @@
       <file leaf-file-name="ChatActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-164">
-              <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+            <state relative-caret-position="194">
+              <caret line="212" column="27" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
               <folding>
-                <element signature="e#4405#5317#0" expanded="true" />
-                <element signature="e#5316#5317#0" expanded="true" />
+                <element signature="e#5424#5457#0" expanded="true" />
+                <element signature="e#8332#8444#0" expanded="true" />
+                <element signature="e#8443#8444#0" expanded="true" />
+                <element signature="e#8498#10674#0" expanded="true" />
+                <element signature="e#9535#9581#0" expanded="true" />
+                <element signature="e#10673#10674#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
-              <folding>
-                <element signature="e#1531#1549#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Message.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-              <folding>
-                <element signature="e#1739#1740#0" expanded="true" />
-                <element signature="e#1787#1788#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatRecyclerAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatRecyclerAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,21 +83,18 @@
       <file leaf-file-name="ChatListActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
-              <folding>
-                <element signature="e#2506#2755#0" expanded="true" />
-                <element signature="e#2754#2755#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="193">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContactListActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContactListActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ContactListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+            <state relative-caret-position="245">
+              <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
               <folding>
                 <element signature="e#4403#4431#0" expanded="true" />
               </folding>
@@ -109,21 +102,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChatService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/ChatService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="26" column="37" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="37" />
+            <state relative-caret-position="306">
+              <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseRecyclerAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/base/BaseRecyclerAdapter.java">
+      <file leaf-file-name="activity_chat.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content_chat.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_chat.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="79">
+              <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SocketIOService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="350" column="25" selection-start-line="350" selection-start-column="25" selection-end-line="350" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/MessageService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="31" column="72" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -136,9 +167,9 @@
       <list>
         <option value="layoutResourceFile_vertical" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -204,6 +235,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="assembleReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:percent:25.3.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportPercent2531Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -950,6 +986,11 @@
                 <option name="name" value="assembleReleaseUnitTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:percent:25.3.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportPercent2531Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareDebugDependencies" />
               </ExternalTaskPojo>
@@ -1662,7 +1703,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\PractiseProj\SocketIO" value="4498608095826" />
+        <entry key="D:\PractiseProj\SocketIO" value="4498803694021" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2012,57 +2053,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/interfaces/OnSeekbarChangeListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/interfaces/OnItemClickListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/adapter/AdListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/api/RetrofitCall.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/api/RetrofitResponse.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/api/RetrofitCallback.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/adapter/ContactRecyclerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/message_me.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/message_you.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/model/Response.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/base/BaseRecyclerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/api/UserService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_chat.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/model/User.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/model/Contact.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/utils/SessionManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/model/Chat.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/ChatListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/service/SocketIOService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/adapter/ChatRecyclerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/ChatActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/pws/socketio/api/Service.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatRecyclerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Response.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/chat_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatListRecyclerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Message.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/enums/ChatType.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Chat.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chat_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_contact_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/UserService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Contact.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_contact.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ContactRecyclerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/contact_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/RetrofitCallback.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/ChatService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ContactListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_chat_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatListRecyclerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/enums/MessageType.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/PermissionUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/NetworkUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/DateUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/DialogUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/TypefaceUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/BaseUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/HumanTime.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/MessageUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/Constants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/allowed_mime_types.csv" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/ShortcutUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_chat.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/ImageUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/FileUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/MyApplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/message_video_me.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/message_video_you.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/RetrofitCall.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/Service.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Message.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/MessageService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatRecyclerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/ChatService.java" />
       </list>
     </option>
   </component>
@@ -2097,9 +2138,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2132,147 +2172,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketIO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="ZX1D64HBLZ" />
-    <property name="DEBUGGABLE_DEVICE" value="motorola-xt1068-ZX1D64HBLZ" />
+    <property name="device.picker.selection" value="1c328020" />
+    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_j200g-4200bd8bd897a2d5" />
     <property name="DEBUGGABLE_PROCESS" value="com.hems.socketio.client" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="DEBUGGER_ID" value="Auto" />
-    <property name="SearchEverywhereHistoryKey" value="Soc&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java&#10;Chat&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/ChatListActivity.java&#10;Adapt&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/adapter/ChatRecyclerAdapter.java&#10;Login&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/LoginActivity.java&#10;Socke&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/service/SocketIOService.java" />
+    <property name="SearchEverywhereHistoryKey" value="Login&#9;PSI&#9;JAVA://com.hems.socketio.client.LoginActivity&#10;Sock&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java&#10;sock&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java&#10;Soc&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java&#10;Chat&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/ChatListActivity.java&#10;Adapt&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/adapter/ChatRecyclerAdapter.java&#10;Socke&#9;FILE&#9;file://D:/PractiseProj/SocketIO/app/src/main/java/com/pws/socketio/service/SocketIOService.java" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="last_opened_file_path" value="D:/Android_Studio_workspace/GitHUbAndroidStudio/Nactus-Android" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2283,17 +2203,17 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.hems.socketio.client.api" />
-      <recent name="com.hems.socketio.client.adapter" />
       <recent name="com.hems.socketio.client" />
-      <recent name="com.pws.socketio.model" />
-      <recent name="com.pws.socketio.utils" />
+      <recent name="com.hems.socketio.client.utils" />
+      <recent name="com.hems.socketio.client.enums" />
+      <recent name="com.hems.socketio.client.adapter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PractiseProj\SocketIO\app\src\main\res" />
       <recent name="D:\PractiseProj\SocketIO\app\src\main\res\layout" />
-      <recent name="D:\PractiseProj\SocketIO\app\src\main\res\values" />
-      <recent name="D:\PractiseProj\SocketIO\app\src\main\java\com\pws\socketio" />
-      <recent name="D:\PractiseProj\SocketIO\app\src\main\java\com\pws\socketio\service" />
+      <recent name="D:\PractiseProj\SocketIO\app\src\main\res\drawable" />
+      <recent name="D:\PractiseProj\SocketIO\app\src\main" />
+      <recent name="D:\PractiseProj\SocketIO\app\src\main\java\com\hems\socketio\client\utils" />
+      <recent name="D:\PractiseProj\SocketIO\app\src\main\res" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -2630,11 +2550,11 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55706984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55706984" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.72572404" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26626325" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2644,8 +2564,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39863715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2676,250 +2596,61 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatListActivity.java</url>
-          <line>90</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/RetrofitCallback.java</url>
+          <line>27</line>
           <properties />
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatListActivity.java</url>
-          <line>99</line>
-          <properties method="onFailure" />
-          <option name="timeStamp" value="34" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java</url>
+          <line>261</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java</url>
+          <line>270</line>
+          <properties />
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="37" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/content/ContextWrapper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="421" column="5" selection-start-line="419" selection-start-column="45" selection-end-line="421" selection-end-column="5" />
+        <state relative-caret-position="346">
+          <caret line="186" column="56" selection-start-line="186" selection-start-column="56" selection-end-line="186" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/message_me.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_chat.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/app/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="302" column="22" selection-start-line="302" selection-start-column="22" selection-end-line="302" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/SessionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="63" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pws/socketio/MainActivity.java" />
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SocketIO.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/HeartBeat.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/ShortcutUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/TypefaceUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/RetrofitCall.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/NetworkUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatRecyclerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/DateUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="560" column="19" selection-start-line="560" selection-start-column="19" selection-end-line="560" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chat_item.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatListRecyclerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="179" column="61" selection-start-line="179" selection-start-column="61" selection-end-line="179" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/ic_add.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat_list.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding>
-            <element signature="e#1186#1205#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding>
-            <element signature="e#6261#6262#0" expanded="true" />
-            <element signature="e#6305#6306#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_contact_list.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/os/Parcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="665" column="43" selection-start-line="665" selection-start-column="43" selection-end-line="665" selection-end-column="43" />
-          <folding>
-            <element signature="e#26406#26407#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/interfaces/OnItemClickListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Contact.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
-          <folding>
-            <element signature="e#2620#2621#0" expanded="true" />
-            <element signature="e#2660#2661#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="278">
+          <caret line="110" column="49" selection-start-line="110" selection-start-column="49" selection-end-line="110" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -2928,144 +2659,240 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+        <state relative-caret-position="391">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_contact.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/data/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/recyclerview-v7/25.3.1/recyclerview-v7-25.3.1-sources.jar!/android/support/v7/widget/RecyclerView.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="3448" column="46" selection-start-line="3448" selection-start-column="38" selection-end-line="3448" selection-end-column="46" />
-          <folding />
+          <caret line="378" column="48" selection-start-line="378" selection-start-column="44" selection-end-line="378" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ContactRecyclerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/ImageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="51" column="73" selection-start-line="51" selection-start-column="73" selection-end-line="51" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contact_item.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/MyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/message_video_me.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        <state relative-caret-position="306">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/message_me.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/java/lang/Comparable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="96" column="17" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/net/Uri.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="52" column="55" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/os/Parcelable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="110" column="54" selection-start-line="110" selection-start-column="54" selection-end-line="110" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/PermissionUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="17" column="121" selection-start-line="17" selection-start-column="121" selection-end-line="17" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/widget/ImageView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="653" column="45" selection-start-line="653" selection-start-column="45" selection-end-line="653" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/base/BaseRecyclerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/message_video_you.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="35" />
+        <state relative-caret-position="289">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
+        <state relative-caret-position="238">
+          <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/utils/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+        <state relative-caret-position="186">
+          <caret line="476" column="54" selection-start-line="476" selection-start-column="54" selection-end-line="476" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/UserService.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.socket/engine.io-client/0.8.3/3073f6f52ab83a72d713beb8749d42abe9618227/engine.io-client-0.8.3-sources.jar!/io/socket/emitter/Emitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-681">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/enums/ChatType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketEventListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="67" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="149" column="62" selection-start-line="149" selection-start-column="62" selection-end-line="149" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/os/Parcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="1489" column="71" selection-start-line="1489" selection-start-column="56" selection-end-line="1489" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/76f3c69879d3e01c082f49d8661c5590838148e1/retrofit-2.3.0-sources.jar!/retrofit2/Response.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="37" />
+          <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Chat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="306">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Response.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/76f3c69879d3e01c082f49d8661c5590838148e1/retrofit-2.3.0-sources.jar!/retrofit2/Call.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="5" selection-start-line="27" selection-start-column="23" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="e#493#494#0" expanded="true" />
-            <element signature="e#520#521#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/app/Dialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="280" column="23" selection-start-line="280" selection-start-column="23" selection-end-line="280" selection-end-column="23" />
+        <state relative-caret-position="177">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/enums/ChatType.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/app/Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        <state relative-caret-position="203">
+          <caret line="303" column="48" selection-start-line="303" selection-start-column="48" selection-end-line="303" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/RetrofitCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="48" />
+        <state relative-caret-position="193">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="e#672#673#0" expanded="true" />
             <element signature="e#700#701#0" expanded="true" />
@@ -3073,67 +2900,154 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/db21293949e200f08d5325e8a8eefdcc9134b752/okhttp-3.8.0-sources.jar!/okhttp3/RequestBody.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+        <state relative-caret-position="85">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#1531#1549#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#587#588#0" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/db21293949e200f08d5325e8a8eefdcc9134b752/okhttp-3.8.0-sources.jar!/okhttp3/MediaType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/ChatService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/RetrofitCall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="176">
+          <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/MessageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="31" column="72" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="22617" column="11" selection-start-line="22617" selection-start-column="11" selection-end-line="22618" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/enums/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="29" column="57" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+          <folding>
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#423#424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_chat.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/service/SocketIOService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="350" column="25" selection-start-line="350" selection-start-column="25" selection-end-line="350" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/model/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-          <folding>
-            <element signature="e#1739#1740#0" expanded="true" />
-            <element signature="e#1787#1788#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-164">
-          <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+        <state relative-caret-position="194">
+          <caret line="212" column="27" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
           <folding>
-            <element signature="e#4405#5317#0" expanded="true" />
-            <element signature="e#5316#5317#0" expanded="true" />
+            <element signature="e#5424#5457#0" expanded="true" />
+            <element signature="e#8332#8444#0" expanded="true" />
+            <element signature="e#8443#8444#0" expanded="true" />
+            <element signature="e#8498#10674#0" expanded="true" />
+            <element signature="e#9535#9581#0" expanded="true" />
+            <element signature="e#10673#10674#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/adapter/ChatRecyclerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ChatListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
-          <folding>
-            <element signature="e#2506#2755#0" expanded="true" />
-            <element signature="e#2754#2755#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="193">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/ContactListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+        <state relative-caret-position="245">
+          <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
           <folding>
             <element signature="e#4403#4431#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hems/socketio/client/api/ChatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

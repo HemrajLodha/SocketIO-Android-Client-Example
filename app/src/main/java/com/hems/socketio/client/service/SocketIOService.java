@@ -2,6 +2,7 @@ package com.hems.socketio.client.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -9,22 +10,36 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 
+import com.hems.socketio.client.api.MessageService;
+import com.hems.socketio.client.api.RetrofitCall;
+import com.hems.socketio.client.api.RetrofitCallback;
+import com.hems.socketio.client.enums.MessageType;
+import com.hems.socketio.client.model.Chat;
 import com.hems.socketio.client.model.Message;
+import com.hems.socketio.client.utils.FileUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Response;
 
 import static android.os.Process.THREAD_PRIORITY_BACKGROUND;
 import static com.hems.socketio.client.api.Service.CHAT_SERVICE_URL;
+import static com.hems.socketio.client.api.Service.CHAT_IMAGE_URL;
+import static com.hems.socketio.client.api.Service.SUCCESS;
+import static com.hems.socketio.client.api.Service.FAILED;
 
 
 /**
@@ -33,10 +48,11 @@ import static com.hems.socketio.client.api.Service.CHAT_SERVICE_URL;
 
 public class SocketIOService extends Service implements SocketEventListener.Listener, HeartBeat.HeartBeatListener {
     public static final String KEY_BROADCAST_MESSAGE = "b_message";
-    public static final int EVENT_TYPE_JOIN = 1, EVENT_TYPE_MESSAGE = 2;
+    public static final int EVENT_TYPE_JOIN = 1, EVENT_TYPE_MESSAGE = 2, EVENT_TYPE_TYPING = 3;
     private static final String EVENT_MESSAGE = "message";
     private static final String EVENT_JOIN = "join";
     private static final String EVENT_RECEIVED = "received";
+    private static final String EVENT_TYPING = "typing";
     public static final String EXTRA_DATA = "extra_data_message";
     public static final String EXTRA_USER_NAME = "extra_user_name";
     public static final String EXTRA_EVENT_TYPE = "extra_event_type";
@@ -127,25 +143,49 @@ public class SocketIOService extends Service implements SocketEventListener.List
         if (intent != null) {
             Message chat = intent.getParcelableExtra(EXTRA_DATA);
             int eventType = intent.getIntExtra(EXTRA_EVENT_TYPE, EVENT_TYPE_JOIN);
-            if (eventType == EVENT_TYPE_JOIN) {
-                mUserId = intent.getStringExtra(EXTRA_USER_NAME);
-                if (!mSocket.connected()) {
-                    mSocket.connect();
-                    Log.i(TAG, "connecting socket...");
-                } else {
-                    joinChat();
-                }
-            } else if (chat != null) {
-                if (!mSocket.connected()) {
-                    chatQueue.add(chat);
-                    mSocket.connect();
-                    Log.i(TAG, "reconnecting socket...");
-                } else {
-                    sendMessage(chat);
-                }
+
+            switch (eventType) {
+                case EVENT_TYPE_JOIN:
+                    mUserId = intent.getStringExtra(EXTRA_USER_NAME);
+                    if (!mSocket.connected()) {
+                        mSocket.connect();
+                        Log.i(TAG, "connecting socket...");
+                    } else {
+                        joinChat();
+                    }
+                    break;
+                case EVENT_TYPE_MESSAGE:
+                    if (isSocketConnected()) {
+                        if (chat.getMessageType() == MessageType.PICTURE) {
+                            sendPictureImage(chat, eventType);
+                        } else {
+                            sendMessage(chat, eventType);
+                        }
+                    } else {
+                        chatQueue.add(chat);
+                    }
+                    break;
+                case EVENT_TYPE_TYPING:
+                    if (isSocketConnected()) {
+                        sendMessage(chat, eventType);
+                    }
+                    break;
             }
         }
         return START_STICKY;
+    }
+
+    private boolean isSocketConnected() {
+        if (null == mSocket) {
+            return false;
+        }
+        if (!mSocket.connected()) {
+            mSocket.connect();
+            Log.i(TAG, "reconnecting socket...");
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -172,13 +212,20 @@ public class SocketIOService extends Service implements SocketEventListener.List
         resendQueueMessages();
     }
 
-    private void sendMessage(Message message) {
-        if (null == mSocket) return;
+    private void sendMessage(Message message, int event) {
         JSONObject chat = new JSONObject();
         try {
             chat.put("sender_id", message.getSenderId());
+            chat.put("sender_name", message.getSenderName());
             chat.put("receiver_id", message.getReceiverId());
-            chat.put("message", message.getMessage());
+            if (!TextUtils.isEmpty(message.getChatMessage())) {
+                chat.put("message", message.getChatMessage());
+            }
+            if (!TextUtils.isEmpty(message.getImageUrl())) {
+                chat.put("image_url", CHAT_IMAGE_URL + message.getImageUrl());
+            }
+            chat.put("message_type", message.getMessageType().getValue());
+            chat.put("event", event);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -189,9 +236,50 @@ public class SocketIOService extends Service implements SocketEventListener.List
     private void resendQueueMessages() {
         Message chat = chatQueue.poll();
         if (chat != null) {
-            sendMessage(chat);
+            sendMessage(chat, EVENT_TYPE_MESSAGE);
             resendQueueMessages();
         }
+    }
+
+    public void sendPictureImage(Message data, int eventType) {
+
+        MessageService request = (MessageService) RetrofitCall.createRequest(MessageService.class);
+
+        MultipartBody.Part fileBody = null;
+        if (data.getImageUri() != null) {
+            String path = FileUtils.getPath(this, data.getImageUri());
+            Uri destUri = FileUtils.saveFile(path);
+            fileBody = RetrofitCall.prepareFilePart(this, "image", data.getImageUri());
+        }
+
+        RequestBody senderId = RetrofitCall.prepareStringPart(data.getSenderId());
+        RequestBody senderName = RetrofitCall.prepareStringPart(data.getSenderName());
+        RequestBody receiverId = RetrofitCall.prepareStringPart(data.getReceiverId());
+        RequestBody message = RetrofitCall.prepareStringPart(data.getChatMessage());
+        RequestBody messageType = RetrofitCall.prepareStringPart(String.valueOf(data.getMessageType().getValue()));
+        RequestBody event = RetrofitCall.prepareStringPart(String.valueOf(eventType));
+
+        request.sendPictureImage(senderId,
+                senderName,
+                receiverId,
+                message,
+                messageType,
+                event,
+                fileBody).enqueue(new RetrofitCallback<Message>() {
+            @Override
+            public void onResponse(Message response) {
+                if (response.getStatus() == SUCCESS) {
+                    sendMessage(response.getData(), EVENT_TYPE_MESSAGE);
+                } else {
+                    Toast.makeText(SocketIOService.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(SocketIOService.this, "Failed to send picture message", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -253,20 +341,22 @@ public class SocketIOService extends Service implements SocketEventListener.List
                 try {
                     Intent intent = new Intent();
                     intent.setAction(KEY_BROADCAST_MESSAGE);
-                    intent.putExtra("message", data.getString("message"));
+                    int messageEvent = data.getInt("event");
+                    MessageType messageType = MessageType.getMessageType(data.getInt("message_type"));
+                    if (messageEvent == EVENT_TYPE_MESSAGE) {
+                        if (messageType == MessageType.TEXT) {
+                            intent.putExtra("message", data.getString("message"));
+                        }else if(messageType == MessageType.PICTURE){
+                            intent.putExtra("image_url", data.getString("image_url"));
+                        }
+                    }
                     intent.putExtra("receiver_id", data.getString("receiver_id"));
                     intent.putExtra("sender_id", data.getString("sender_id"));
+                    intent.putExtra("sender_name", data.getString("sender_name"));
+                    intent.putExtra("event", data.getInt("event"));
+                    intent.putExtra("message_type", data.getInt("message_type"));
                     sendBroadcast(intent);
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case EVENT_RECEIVED:
-                data = (JSONObject) args[0];
-                Log.w(TAG, "received : " + data.toString());
-                try {
-
-                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;

@@ -34,4 +34,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile "com.squareup.retrofit2:converter-gson:2.3.0"
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.android.support:percent:25.3.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

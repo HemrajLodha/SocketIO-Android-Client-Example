@@ -15,19 +15,19 @@ import java.util.ArrayList;
  * Created by intel on 04-Mar-17.
  */
 
-public class ChatListRecyclerAdapter extends BaseRecyclerAdapter<ChatListRecyclerAdapter.ViewHolder, Chat>
-{
+public class ChatListRecyclerAdapter extends BaseRecyclerAdapter<ChatListRecyclerAdapter.ViewHolder, Chat> {
     public ChatListRecyclerAdapter(Context context, ArrayList<Chat> items, OnItemClickListener onClickListener) {
         super(context, R.layout.chat_item, items, onClickListener);
     }
 
-    class ViewHolder extends BaseRecyclerAdapter<BaseRecyclerAdapter.ViewHolder, Chat>.ViewHolder {
+    class ViewHolder extends BaseRecyclerAdapter<BaseRecyclerAdapter.ViewHolder, Chat>.ViewHolder implements View.OnLongClickListener {
         TextView tvName, tvMessage;
 
         public ViewHolder(View view, OnItemClickListener onClickListener) {
             super(view, onClickListener);
             tvName = (TextView) view.findViewById(R.id.name);
             tvMessage = (TextView) view.findViewById(R.id.message);
+            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -42,12 +42,24 @@ public class ChatListRecyclerAdapter extends BaseRecyclerAdapter<ChatListRecycle
                 onItemClickListener.onItemClick(view, getLayoutPosition());
             }
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (onItemClickListener != null) {
+                ((OnItemClickListener) onItemClickListener).onLongClick(v, getLayoutPosition());
+            }
+            return false;
+        }
     }
 
 
     @Override
     protected ViewHolder onCreateViewHolder(View view, int viewType) {
-        return new ViewHolder(view, onItemClickListener);
+        return new ViewHolder(view, (OnItemClickListener) onItemClickListener);
+    }
+
+    public interface OnItemClickListener extends com.hems.socketio.client.interfaces.OnItemClickListener {
+        void onLongClick(View v, int position);
     }
 
 }

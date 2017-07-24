@@ -2,6 +2,33 @@
 <items version="2" >
 
     <item
+        is-multidex="false"
+        jar="C:\Users\planet\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.3.0\9e09011e9767bb76b5e27c9b8223476b93b14631\converter-gson-2.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e09011e9767bb76b5e27c9b8223476b93b14631">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\converter-gson-2.3.0_085236595ac68365515858aa93819bc58d9828e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\planet\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\okhttp-3.8.0_74ba2fbd10a5f68ee7a6ac90abe4cf4ed13d9c13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\planet\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.3.0\bcacde6a8ccedcc56c127403d26b76072fe6214d\retrofit-2.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\retrofit-2.3.0_4803f5b8794c1e99e18a9b9184c2d342f84e12c1.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="D:\PractiseProj\SocketIO\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
@@ -11,13 +38,58 @@
         <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3a8279da69b75ff78376b681c197d72368c5fa1e\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\planet\.gradle\caches\modules-2\files-2.1\io.socket\engine.io-client\0.8.3\854b49396e1e9f9bb0ab025062ddb49c4ed65ca1\engine.io-client-0.8.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="854b49396e1e9f9bb0ab025062ddb49c4ed65ca1">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\engine.io-client-0.8.3_170100df46f705954a67fa7a7c3ea2cf20331351.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\planet\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\okio-1.13.0_ef0f33eac85860b0e8ea49b85c02758290cfd4ca.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="D:\PractiseProj\SocketIO\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="c214699fc15c45814ebc1907546b4363dea31a61">
+        sha1="fafceec2a3156c573c4dd6232240a2b0a75b50b8">
         <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_1b34916f276a8137cf16c5a371813a7a1140a8cc\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\planet\.gradle\caches\modules-2\files-2.1\io.socket\socket.io-client\0.8.3\b30500232ff0668a47c9f91f02e6935457a52fb5\socket.io-client-0.8.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b30500232ff0668a47c9f91f02e6935457a52fb5">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\socket.io-client-0.8.3_ee5841c200580346125e574e673e1528a8b3c2e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\planet\.android\build-cache\d251a97719797d0c0e02e425cf8c8a9a0e45262e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\classes_75bd03b7d7141e759d867d006fc11b1673faa4ca.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\planet\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_9f02355fe29309a2875eba8ec1cfc91774684dd5.jar" />
     </item>
 
 </items>
