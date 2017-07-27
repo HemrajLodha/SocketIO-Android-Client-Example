@@ -19,8 +19,11 @@
         completions."
     </string>
 
+    <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="chooser_title">Choose File</string>
+
+    <string name="menu_title_logout">Logout</string>
 
     <string name="menu_title_chat_options">Chat Options</string>
     <string name="menu_title_create">Create Chat</string>

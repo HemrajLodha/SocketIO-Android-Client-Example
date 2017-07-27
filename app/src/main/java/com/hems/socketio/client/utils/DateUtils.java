@@ -30,7 +30,7 @@ public final class DateUtils {
     }
 
     private static String format(@NonNull final Date date, @NonNull final String template) {
-        return new SimpleDateFormat(template, Locale.ENGLISH).format(date);
+        return new SimpleDateFormat(template, Locale.getDefault()).format(date);
     }
 
     private static String format(@NonNull final Date date, @NonNull final String template,Locale locale) {

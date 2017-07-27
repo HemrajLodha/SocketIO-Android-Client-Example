@@ -1,5 +1,6 @@
 package com.hems.socketio.client;
 
+import android.accounts.Account;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -24,6 +25,7 @@ import com.hems.socketio.client.api.Service;
 import com.hems.socketio.client.api.UserService;
 import com.hems.socketio.client.model.User;
 import com.hems.socketio.client.service.SocketIOService;
+import com.hems.socketio.client.sync.SyncUtil;
 import com.hems.socketio.client.utils.SessionManager;
 
 import retrofit2.Call;
@@ -146,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(User response) {
                 showProgress(false);
                 if (response.getStatus() == Service.SUCCESS) {
+                    SyncUtil.CreateSyncAccount(getApplicationContext(),response.getData().getUsername()); // create sync account
                     SessionManager.newInstance(LoginActivity.this).createLoginSession(response.getData().getId(), response.getData().getName(),
                             response.getData().getUsername());
                     Intent service = new Intent(LoginActivity.this, SocketIOService.class);

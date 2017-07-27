@@ -31,7 +31,8 @@ public interface ChatService {
 
     // get all chat list for user
     @GET("/api/chat")
-    Call<Chat> getChatList(@Query("id") String userId);
+    Call<Chat> getChatList(@Query("id") String userId,@Query("pageNo") int pageNo,@Query("limit") int limit,@Query("update_date") long update_date,
+                           @Query("deleted") boolean deleted);
 
     @FormUrlEncoded
     @HTTP(path = "/api/chat",method = "DELETE", hasBody = true)

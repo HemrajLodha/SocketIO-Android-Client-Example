@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.hems.socketio.client.LoginActivity;
+import com.hems.socketio.client.sync.SyncUtil;
 
 /**
  * Created by Rakesh on 12/27/2016.
@@ -31,6 +32,8 @@ public class SessionManager {
     private static final String KEY_ID = "key_id";
     private static final String KEY_NAME = "key_name";
     private static final String KEY_USER_NAME = "key_user_name";
+    private static final String KEY_LAST_SYNC_DATE = "key_last_sync_date";
+    private static final String KEY_FIRST_SYNC_DONE = "key_last_sync_done";
 
     public static SessionManager newInstance(Context context) {
         return new SessionManager(context);
@@ -95,7 +98,9 @@ public class SessionManager {
      * Clear session details
      */
     @SuppressLint("NewApi")
-    public void logoutUser() {
+    public void logoutUser(Context context) {
+        //Delete sync account
+        SyncUtil.DeleteSyncAccount(context);
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
@@ -128,9 +133,24 @@ public class SessionManager {
         return pref.getString("phoneInfo", null);
     }
 
-
     public void saveLoginSession(boolean result) {
         editor.putBoolean(IS_LOGIN, result).commit();
+    }
+
+    public void saveLastSyncDate(long date) {
+        editor.putLong(KEY_LAST_SYNC_DATE, date).commit();
+    }
+
+    public long getLastSyncDate() {
+        return pref.getLong(KEY_LAST_SYNC_DATE,0);
+    }
+
+    public void saveFirstSyncDone(boolean syncDone) {
+        editor.putBoolean(KEY_FIRST_SYNC_DONE, syncDone).commit();
+    }
+
+    public boolean isFirstSyncDone() {
+        return pref.getBoolean(KEY_FIRST_SYNC_DONE, false);
     }
 
 }

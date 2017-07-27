@@ -25,6 +25,7 @@ import com.hems.socketio.client.interfaces.OnItemClickListener;
 import com.hems.socketio.client.model.Contact;
 import com.hems.socketio.client.model.Response;
 import com.hems.socketio.client.service.SocketIOService;
+import com.hems.socketio.client.sync.SyncAdapter;
 import com.hems.socketio.client.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -115,7 +116,7 @@ public class ContactListActivity extends AppCompatActivity implements ContactRec
         progressDialog = ProgressDialog.show(this, getString(R.string.app_name),
                 "Creating " + (chatType == ChatType.PERSONAL ? "private" : "group") + " chat", false);
         ChatService request = (ChatService) RetrofitCall.createRequest(ChatService.class);
-        request.createChat(sessionManager.getUserId(),chatType.getValue(), users).enqueue(new RetrofitCallback<Response<String>>() {
+        request.createChat(sessionManager.getUserId(), chatType.getValue(), users).enqueue(new RetrofitCallback<Response<String>>() {
             @Override
             public void onResponse(Response<String> response) {
                 Toast.makeText(ContactListActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
