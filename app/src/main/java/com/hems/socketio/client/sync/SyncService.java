@@ -6,7 +6,7 @@ import android.os.IBinder;
 
 public class SyncService extends Service {
     // Storage for an instance of the sync adapter
-    private static SyncAdapter sSyncAdapter = null;
+    private static ChatSyncAdapter sSyncAdapter = null;
     // Object to use as a thread-safe lock
     private static final Object sSyncAdapterLock = new Object();
     /*
@@ -21,7 +21,7 @@ public class SyncService extends Service {
          */
         synchronized (sSyncAdapterLock) {
             if (sSyncAdapter == null) {
-                sSyncAdapter = new SyncAdapter(getApplicationContext(), true);
+                sSyncAdapter = new ChatSyncAdapter(getApplicationContext(), true);
             }
         }
     }

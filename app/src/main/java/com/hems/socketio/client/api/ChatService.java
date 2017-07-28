@@ -27,7 +27,7 @@ public interface ChatService {
 
     @POST("/api/chat")
     @FormUrlEncoded
-    Call<Response<String>> createChat(@Field("user_id") String userId,@Field("type") Integer type, @Field("users") ArrayList<String> users);
+    Call<Chat> createChat(@Field("user_id") String userId,@Field("type") Integer type, @Field("users") ArrayList<String> users);
 
     // get all chat list for user
     @GET("/api/chat")

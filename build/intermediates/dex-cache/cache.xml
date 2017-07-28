@@ -61,8 +61,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6d531b666411e0ca798cb2b49578a8719a2fb758">
+        sha1="25bed3aa433c0ca319483ec3c2205f77a2ed7c24">
         <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_1b34916f276a8137cf16c5a371813a7a1140a8cc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\planet\.android\build-cache\b131c7933b8f4eecca00302fcac3078df0653979\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="D:\PractiseProj\SocketIO\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_160b70a9ca44a95bbf003a2417d3ecc556baf88f\classes.dex" />
     </item>
     <item
         is-multidex="false"

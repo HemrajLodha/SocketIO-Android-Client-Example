@@ -6,14 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,17 +29,14 @@ import com.hems.socketio.client.provider.DatabaseContract;
 import com.hems.socketio.client.provider.QueryUtils;
 import com.hems.socketio.client.provider.SQLiteHelper;
 import com.hems.socketio.client.service.SocketIOService;
-import com.hems.socketio.client.sync.SyncAdapter;
+import com.hems.socketio.client.sync.ChatSyncAdapter;
 import com.hems.socketio.client.utils.SessionManager;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class ChatListActivity extends AppCompatActivity
         implements ChatListRecyclerAdapter.OnItemClickListener,
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
     private RecyclerView recyclerView;
     private ChatListRecyclerAdapter adapter;
     private ArrayList<Chat> list;
@@ -72,15 +67,11 @@ public class ChatListActivity extends AppCompatActivity
         list = new ArrayList<>();
         adapter = new ChatListRecyclerAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ChatListActivity.this, ContactListActivity.class);
-                startActivity(intent);
-            }
-        });
-        SyncAdapter.performSync();
+        findViewById(R.id.menu_add_chat).setOnClickListener(this);
+        findViewById(R.id.menu_add_contact).setOnClickListener(this);
+        ChatSyncAdapter.performSync();
         getLoaderManager().initLoader(101, null, this);
+       // FileUtils.backUpSqliteDb();
     }
 
     @Override
@@ -186,5 +177,20 @@ public class ChatListActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.menu_add_chat:
+                Intent intent = new Intent(ChatListActivity.this, CreateChatActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menu_add_contact:
+                intent = new Intent(ChatListActivity.this, CreateContactActivity.class);
+                startActivity(intent);
+                break;
+
+    }
     }
 }

@@ -4,11 +4,14 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.hems.socketio.client.enums.ChatType;
 import com.hems.socketio.client.provider.DatabaseContract;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by planet on 7/14/2017.
@@ -29,10 +32,10 @@ public class Chat extends DataResponse<ArrayList<Chat>> implements Parcelable {
 
     public Chat(Cursor cursor) {
         id = cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_CHAT_ID);
-        type = ChatType.getChatType(cursor.getInt(DatabaseContract.TableChat.INDEX_COLUMN_TYPE)) ;
+        type = ChatType.getChatType(cursor.getInt(DatabaseContract.TableChat.INDEX_COLUMN_TYPE));
         name = cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_NAME);
-        //users =  cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_USERS);
-        //admin_ids =  cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_ADMIN_IDS);
+        users = new Gson().fromJson(cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_USERS), new TypeToken<List<Contact>>(){}.getType());
+        admin_ids = new Gson().fromJson(cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_ADMIN_IDS),new TypeToken<List<String>>(){}.getType());
         last_message_id = cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_LAST_MESSAGE_ID);
         updateDate = cursor.getLong(DatabaseContract.TableChat.INDEX_COLUMN_UPDATE_DATE);
     }

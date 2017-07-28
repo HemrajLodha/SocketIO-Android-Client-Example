@@ -22,6 +22,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DatabaseContract.TableChat.CREATE_TABLE_QUERY);
+        db.execSQL(DatabaseContract.TableContact.CREATE_TABLE_QUERY);
+        db.execSQL(DatabaseContract.TableMessage.CREATE_TABLE_QUERY);
     }
 
     @Override
@@ -41,6 +43,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      */
     public static void deleteDatabase(Context context) {
         context.getContentResolver().delete(DatabaseContract.TableChat.CONTENT_URI, null, null);
+        context.getContentResolver().delete(DatabaseContract.TableContact.CONTENT_URI, null, null);
+        context.getContentResolver().delete(DatabaseContract.TableMessage.CONTENT_URI, null, null);
     }
 }
 

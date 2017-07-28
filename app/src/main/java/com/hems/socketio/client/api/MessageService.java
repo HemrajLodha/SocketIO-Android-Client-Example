@@ -33,4 +33,8 @@ public interface MessageService {
                                    @Part("message_type") RequestBody messageType,
                                    @Part("event") RequestBody event,
                                    @Part MultipartBody.Part file);
+
+    // get all chat list for user
+    @GET("/api/message")
+    Call<Message> getMessageList(@Query("id") String userId,@Query("pageNo") int pageNo,@Query("limit") int limit,@Query("update_date") long update_date);
 }
