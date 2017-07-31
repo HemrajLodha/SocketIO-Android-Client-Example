@@ -18,7 +18,9 @@ public class MyContentProvider extends ContentProvider {
     private static final int CONTACT = 3;
     private static final int CONTACT_ID = 4;
     private static final int MESSAGE = 5;
-    private static final int MESSAGE_ID = 6;
+    private static final int CHAT_MESSAGES = 6;
+    private static final int CHAT_MESSAGES_ID = 7;
+    private static final int MESSAGE_ID = 8;
 
     private static final UriMatcher sURIMatcher = new UriMatcher(
             UriMatcher.NO_MATCH);
@@ -29,6 +31,8 @@ public class MyContentProvider extends ContentProvider {
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableContact.BASE_PATH, CONTACT);
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableContact.BASE_PATH + "/*", CONTACT_ID);
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.BASE_PATH, MESSAGE);
+        sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.PATH_CHAT_MESSAGES, CHAT_MESSAGES);
+        sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.PATH_CHAT_MESSAGES + "/*", CHAT_MESSAGES_ID);
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.BASE_PATH + "/*", MESSAGE_ID);
     }
 
@@ -146,6 +150,7 @@ public class MyContentProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         // Uisng SQLiteQueryBuilder instead of query() method
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+        String mQuery = null;
         // check if the caller has requested a column which does not exists
         // Set the table
         int uriType = sURIMatcher.match(uri);
@@ -169,21 +174,42 @@ public class MyContentProvider extends ContentProvider {
                         + uri.getLastPathSegment() + "'");
                 break;
             case MESSAGE:
-                queryBuilder.setTables(DatabaseContract.TableMessage.TABLE_NAME);
-                break;
             case MESSAGE_ID:
-                // adding the ID to the original query
                 queryBuilder.setTables(DatabaseContract.TableMessage.TABLE_NAME);
-                queryBuilder.appendWhere(DatabaseContract.TableMessage.COLUMN_ID + "='"
-                        + uri.getLastPathSegment() + "'");
+                if (uriType == MESSAGE_ID) {
+                    queryBuilder.appendWhere(DatabaseContract.TableMessage.COLUMN_ID + "='"
+                            + uri.getLastPathSegment() + "'");
+                }
+                break;
+            case CHAT_MESSAGES:
+            case CHAT_MESSAGES_ID:
+                mQuery = "SELECT C." + DatabaseContract.TableContact.COLUMN_NAME + " AS contact_name " +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_SENDER_NAME + " AS sender_name " +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_SENDER_ID +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_MESSAGE +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_TYPE +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_IMAGE_URL +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_CREATE_DATE + " " +
+                        "FROM " + DatabaseContract.TableMessage.TABLE_NAME + " M " +
+                        "LEFT JOIN " + DatabaseContract.TableContact.TABLE_NAME + " C " +
+                        "ON M." + DatabaseContract.TableMessage.COLUMN_SENDER_ID + "=C." + DatabaseContract.TableContact.COLUMN_ID + " " +
+                        "WHERE M." + DatabaseContract.TableMessage.COLUMN_CHAT_ID + "='" + ((uriType == CHAT_MESSAGES) ? "?" : uri.getLastPathSegment()) + "' " +
+                        "ORDER BY M." + DatabaseContract.TableMessage.COLUMN_CREATE_DATE + " ASC " +
+                        "LIMIT 20 OFFSET (SELECT COUNT(*) FROM " + DatabaseContract.TableMessage.TABLE_NAME + " " +
+                        "WHERE " + DatabaseContract.TableMessage.COLUMN_CHAT_ID + "='" + ((uriType == CHAT_MESSAGES) ? "?" : uri.getLastPathSegment()) + "')-20";
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
+        Cursor cursor;
         SQLiteDatabase db = sqLiteHelper.getReadableDatabase();
-        Cursor cursor = queryBuilder.query(db, projection, selection,
-                selectionArgs, null, null, sortOrder);
+        if (!TextUtils.isEmpty(mQuery)) {
+            cursor = db.rawQuery(mQuery, selectionArgs);
+        } else {
+            cursor = queryBuilder.query(db, projection, selection,
+                    selectionArgs, null, null, sortOrder);
+        }
         // make sure that potential listeners are getting notified
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;

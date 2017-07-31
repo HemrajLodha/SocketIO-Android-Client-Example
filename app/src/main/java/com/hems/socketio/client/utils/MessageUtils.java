@@ -1,6 +1,9 @@
 package com.hems.socketio.client.utils;
 
 import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -51,5 +54,15 @@ public class MessageUtils
     {
         if(actionSnackBar != null)
             actionSnackBar.dismiss();
+    }
+
+    public static void playNotificationRingtone(Context context){
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(context, notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

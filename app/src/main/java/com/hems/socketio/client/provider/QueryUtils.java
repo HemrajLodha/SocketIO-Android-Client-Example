@@ -1,15 +1,19 @@
 package com.hems.socketio.client.provider;
 
+import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hems.socketio.client.model.Chat;
 import com.hems.socketio.client.model.Contact;
+import com.hems.socketio.client.model.Message;
 
 import java.util.ArrayList;
 
@@ -88,5 +92,40 @@ public final class QueryUtils {
                 context.getContentResolver().insert(DatabaseContract.TableContact.CONTENT_URI, cv);
             }
         }
+    }
+
+    public static void saveLastMessages(Context context, String chatId, ArrayList<Message> messages) {
+        ArrayList<ContentProviderOperation> batch = new ArrayList<>();
+        for (Message message : messages) {
+            batch.add(ContentProviderOperation.newInsert(DatabaseContract.TableMessage.CONTENT_URI)
+                    .withValue(DatabaseContract.TableMessage.COLUMN_ID, message.getId())
+                    .withValue(DatabaseContract.TableMessage.COLUMN_SENDER_ID, message.getSenderId())
+                    .withValue(DatabaseContract.TableMessage.COLUMN_SENDER_NAME, message.getSenderName())
+                    .withValue(DatabaseContract.TableMessage.COLUMN_CHAT_ID, chatId)
+                    .withValue(DatabaseContract.TableMessage.COLUMN_MESSAGE, message.getChatMessage())
+                    .withValue(DatabaseContract.TableMessage.COLUMN_IMAGE_URL, message.getImageUrl())
+                    .withValue(DatabaseContract.TableMessage.COLUMN_TYPE, message.getMessageType().getValue())
+                    .withValue(DatabaseContract.TableMessage.COLUMN_CREATE_DATE, message.getTime())
+                    .build());
+        }
+        try {
+            context.getContentResolver().applyBatch(DatabaseContract.AUTHORITY, batch);
+        } catch (RemoteException | OperationApplicationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveMessage(Context context, Message message) {
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseContract.TableMessage.COLUMN_ID, message.getId());
+        cv.put(DatabaseContract.TableMessage.COLUMN_SENDER_ID, message.getSenderId());
+        cv.put(DatabaseContract.TableMessage.COLUMN_SENDER_NAME, message.getSenderName());
+        cv.put(DatabaseContract.TableMessage.COLUMN_CHAT_ID, message.getReceiverId());
+        cv.put(DatabaseContract.TableMessage.COLUMN_MESSAGE, message.getChatMessage());
+        cv.put(DatabaseContract.TableMessage.COLUMN_IMAGE_URL, message.getImageUrl());
+        cv.put(DatabaseContract.TableMessage.COLUMN_TYPE, message.getMessageType().getValue());
+        cv.put(DatabaseContract.TableMessage.COLUMN_CREATE_DATE, message.getTime());
+        context.getContentResolver().insert(DatabaseContract.TableMessage.CONTENT_URI, cv);
+        context.getContentResolver().notifyChange(DatabaseContract.TableMessage.CONTENT_URI_CHAT_MESSAGES, null);
     }
 }

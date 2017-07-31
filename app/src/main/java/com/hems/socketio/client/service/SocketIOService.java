@@ -19,7 +19,10 @@ import com.hems.socketio.client.api.RetrofitCallback;
 import com.hems.socketio.client.enums.MessageType;
 import com.hems.socketio.client.model.Chat;
 import com.hems.socketio.client.model.Message;
+import com.hems.socketio.client.provider.QueryUtils;
 import com.hems.socketio.client.utils.FileUtils;
+import com.hems.socketio.client.utils.MessageUtils;
+import com.hems.socketio.client.utils.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -161,6 +164,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
                         } else {
                             sendMessage(chat, eventType);
                         }
+                        QueryUtils.saveMessage(this, chat);
                     } else {
                         chatQueue.add(chat);
                     }
@@ -269,7 +273,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
             @Override
             public void onResponse(Message response) {
                 if (response.getStatus() == SUCCESS) {
-                    sendMessage(response.getData(), EVENT_TYPE_MESSAGE);
+                    sendMessage(response.getData().get(0), EVENT_TYPE_MESSAGE);
                 } else {
                     Toast.makeText(SocketIOService.this, response.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -343,18 +347,30 @@ public class SocketIOService extends Service implements SocketEventListener.List
                     intent.setAction(KEY_BROADCAST_MESSAGE);
                     int messageEvent = data.getInt("event");
                     MessageType messageType = MessageType.getMessageType(data.getInt("message_type"));
+                    String senderId = data.getString("sender_id");
+                    String senderName = data.getString("sender_name");
+                    String message = data.has("message") ? data.getString("message") : "";
+                    String imageUrl = data.has("image_url") ? data.getString("image_url") : "";
+                    String receiverId = data.getString("receiver_id");
+
                     if (messageEvent == EVENT_TYPE_MESSAGE) {
-                        if (messageType == MessageType.TEXT) {
-                            intent.putExtra("message", data.getString("message"));
-                        }else if(messageType == MessageType.PICTURE){
-                            intent.putExtra("image_url", data.getString("image_url"));
-                        }
+                        Message chat = new Message.Builder()
+                                .receiverId(receiverId)
+                                .senderId(senderId)
+                                .senderName(senderName)
+                                .message(message)
+                                .imageUrl(imageUrl)
+                                .messageType(messageType)
+                                .time(System.currentTimeMillis())
+                                .build();
+                        QueryUtils.saveMessage(this, chat);
+                        MessageUtils.playNotificationRingtone(getApplicationContext()); // play notification sound
                     }
-                    intent.putExtra("receiver_id", data.getString("receiver_id"));
-                    intent.putExtra("sender_id", data.getString("sender_id"));
-                    intent.putExtra("sender_name", data.getString("sender_name"));
-                    intent.putExtra("event", data.getInt("event"));
-                    intent.putExtra("message_type", data.getInt("message_type"));
+                    intent.putExtra("receiver_id", receiverId);
+                    intent.putExtra("sender_id", senderId);
+                    intent.putExtra("sender_name", senderName);
+                    intent.putExtra("event", messageEvent);
+                    intent.putExtra("message_type", messageType.getValue());
                     sendBroadcast(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();

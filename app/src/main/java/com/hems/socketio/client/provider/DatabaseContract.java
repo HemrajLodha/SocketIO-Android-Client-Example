@@ -148,6 +148,7 @@ public interface DatabaseContract {
         String TABLE_NAME = "message";
         String COLUMN_ID = "message_id";
         String COLUMN_SENDER_ID = "sender_id";
+        String COLUMN_SENDER_NAME = "sender_name";
         String COLUMN_CHAT_ID = "chat_id";
         String COLUMN_MESSAGE = "message";
         String COLUMN_IMAGE_URL = "image_url";
@@ -159,6 +160,7 @@ public interface DatabaseContract {
                         _ID,
                         COLUMN_ID,
                         COLUMN_SENDER_ID,
+                        COLUMN_SENDER_NAME,
                         COLUMN_CHAT_ID,
                         COLUMN_MESSAGE,
                         COLUMN_IMAGE_URL,
@@ -172,8 +174,12 @@ public interface DatabaseContract {
                 };
 
         String BASE_PATH = "messages";
+        String PATH_CHAT_MESSAGES = "chatmessages";
         Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 + "/" + BASE_PATH);
+        Uri CONTENT_URI_CHAT_MESSAGES = Uri.parse("content://" + AUTHORITY
+                + "/" + PATH_CHAT_MESSAGES);
+
         String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
                 + "/" + BASE_PATH;
         String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
@@ -183,22 +189,24 @@ public interface DatabaseContract {
                 + " ( " + _ID + " INTEGER PRIMARY KEY, "
                 + COLUMN_ID + " VARCHAR, "
                 + COLUMN_SENDER_ID + " VARCHAR, "
+                + COLUMN_SENDER_NAME + " VARCHAR, "
                 + COLUMN_CHAT_ID + " VARCHAR, "
                 + COLUMN_MESSAGE + " TEXT, "
                 + COLUMN_IMAGE_URL + " VARCHAR, "
                 + COLUMN_TYPE + " INTEGER, "
-                + COLUMN_CREATE_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP)";
+                + COLUMN_CREATE_DATE + " INTEGER)";
 
         String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
         int INDEX_COLUMN_ID = 0;
         int INDEX_COLUMN_MESSAGE_ID = 1;
         int INDEX_COLUMN_SENDER_ID = 2;
-        int INDEX_COLUMN_CHAT_ID = 3;
-        int INDEX_COLUMN_MESSAGE = 4;
-        int INDEX_COLUMN_IMAGE_URL = 5;
-        int INDEX_COLUMN_TYPE = 6;
-        int INDEX_COLUMN_CREATE_DATE = 7;
+        int INDEX_COLUMN_SENDER_NAME = 3;
+        int INDEX_COLUMN_CHAT_ID = 4;
+        int INDEX_COLUMN_MESSAGE = 5;
+        int INDEX_COLUMN_IMAGE_URL = 6;
+        int INDEX_COLUMN_TYPE = 7;
+        int INDEX_COLUMN_CREATE_DATE = 8;
     }
 
 }

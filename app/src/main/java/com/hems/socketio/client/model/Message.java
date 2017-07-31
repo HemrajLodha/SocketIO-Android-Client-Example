@@ -1,23 +1,27 @@
 package com.hems.socketio.client.model;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.hems.socketio.client.enums.ChatType;
 import com.hems.socketio.client.enums.MessageType;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by planet on 6/8/2017.
  */
 
-public class Message extends Response<Message> implements Parcelable {
+public class Message extends DataResponse<ArrayList<Message>> implements Parcelable {
     public static final String TYPE_USER_MESSAGE = "user-message";
     public static final String TYPE_CHAT = "chat";
     public static final int SUCCESS = 1, FAILED = 0, SENDING = 2;
+    private String id;
     @SerializedName("receiver_id")
     private String mReceiverId;
     @SerializedName("sender_id")
@@ -35,13 +39,24 @@ public class Message extends Response<Message> implements Parcelable {
     private ChatType mType;
     @SerializedName("message_type")
     private MessageType messageType;
+    @SerializedName("date")
     private long mTime;
 
     private Message() {
     }
 
+    public Message(Cursor cursor) {
+        mSenderName = !TextUtils.isEmpty(cursor.getString(0)) ? cursor.getString(0) : cursor.getString(1);
+        mSenderId = cursor.getString(2);
+        mMessage = cursor.getString(3);
+        messageType = MessageType.getMessageType(cursor.getInt(4));
+        imageUrl = cursor.getString(5);
+        mTime = cursor.getLong(6);
+    }
+
 
     protected Message(Parcel in) {
+        id = in.readString();
         mReceiverId = in.readString();
         mSenderId = in.readString();
         mSenderName = in.readString();
@@ -53,11 +68,12 @@ public class Message extends Response<Message> implements Parcelable {
         mType = ChatType.getChatType(in.readInt());
         messageType = MessageType.getMessageType(in.readInt());
         mTime = in.readLong();
-        data = in.readParcelable(Message.class.getClassLoader());
+        data = in.createTypedArrayList(Message.CREATOR);
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(mReceiverId);
         dest.writeString(mSenderId);
         dest.writeString(mSenderName);
@@ -69,7 +85,7 @@ public class Message extends Response<Message> implements Parcelable {
         dest.writeInt(mType.getValue());
         dest.writeInt(messageType.getValue());
         dest.writeLong(mTime);
-        dest.writeParcelable(data, flags);
+        dest.writeTypedList(data);
     }
 
 
@@ -129,6 +145,11 @@ public class Message extends Response<Message> implements Parcelable {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public String getId() {
+        return id;
+    }
+
 
     public static class Builder {
         private String mReceiverId;

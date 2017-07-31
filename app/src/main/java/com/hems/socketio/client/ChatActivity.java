@@ -1,14 +1,21 @@
 package com.hems.socketio.client;
 
+import android.app.LoaderManager;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.Loader;
+import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,27 +40,34 @@ import com.hems.socketio.client.enums.MessageType;
 import com.hems.socketio.client.interfaces.OnItemClickListener;
 import com.hems.socketio.client.model.Chat;
 import com.hems.socketio.client.model.Message;
+import com.hems.socketio.client.provider.DatabaseContract;
+import com.hems.socketio.client.provider.QueryUtils;
 import com.hems.socketio.client.service.SocketIOService;
+import com.hems.socketio.client.sync.ChatSyncAdapter;
 import com.hems.socketio.client.utils.FileUtils;
 import com.hems.socketio.client.utils.ImageUtil;
+import com.hems.socketio.client.utils.MessageUtils;
 import com.hems.socketio.client.utils.PermissionUtils;
 import com.hems.socketio.client.utils.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 
 public class ChatActivity extends AppCompatActivity
-        implements OnItemClickListener, View.OnClickListener {
+        implements OnItemClickListener, View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor> {
     private static final int CHOOSE_FILE_REQUEST_CODE = 1001;
     private static final int TYPING_TIME_OUT = 2000;
     private static final String TAG = ChatActivity.class.getSimpleName();
     public static final String EXTRA_DATA = "extra_data";
+    private static final int MAX_PAGE_SIZE = 20;
     private RecyclerView recyclerView;
     private ChatRecyclerAdapter adapter;
     private ArrayList<Message> chatList;
@@ -64,6 +78,7 @@ public class ChatActivity extends AppCompatActivity
     private Chat mChat;
     private SessionManager sessionManager;
     private Handler mHandler;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +118,94 @@ public class ChatActivity extends AppCompatActivity
         mHandler = new Handler();
 
         etMessage.addTextChangedListener(watcher);
+
+        getMessages();
+
     }
 
+
+    private void getMessages() {
+        Cursor cursorCount = getContentResolver().query(DatabaseContract.TableMessage.CONTENT_URI,
+                new String[]{"COUNT(*)"}, null, null, null);
+
+        if (cursorCount != null) {
+            if (cursorCount.moveToFirst()) {
+                int count = cursorCount.getInt(0);
+                if (count != 0) {
+                    getLoaderManager().initLoader(101, null, this);
+                } else {
+                    getLastMessages();
+                }
+            }
+            cursorCount.close();
+        } else {
+            getLastMessages();
+        }
+    }
+
+    public void getLastMessages() {
+        progressDialog = ProgressDialog.show(ChatActivity.this, getString(R.string.app_name), "Getting old messages", false, false);
+        final MessageService request = (MessageService) RetrofitCall.createRequest(MessageService.class);
+        Call<Message> call = request.getMessageList(mChat.getId(), 1, MAX_PAGE_SIZE, 0);
+        call.enqueue(new RetrofitCallback<Message>() {
+            @Override
+            public void onResponse(Message response) {
+                if (response != null) {
+                    if (response.getStatus() == Service.SUCCESS) {
+                        if (response.getData().size() != 0) {
+                            QueryUtils.saveLastMessages(ChatActivity.this, mChat.getId(), response.getData());
+                            getLoaderManager().initLoader(101, null, ChatActivity.this);
+                        } else {
+                            Log.i(TAG, "No data to sync");
+                        }
+                    } else {
+                        Log.i(TAG, response.getMessage());
+                    }
+                } else {
+                    Log.i(TAG, "Failed to sync data");
+                }
+                if (progressDialog != null) {
+                    progressDialog.cancel();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(ChatActivity.this, "Failed to create chat", Toast.LENGTH_SHORT).show();
+                if (progressDialog != null) {
+                    progressDialog.cancel();
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Uri CONTENT_URI = Uri.parse(DatabaseContract.TableMessage.CONTENT_URI_CHAT_MESSAGES + "/" + mChat.getId());
+        return new CursorLoader(this, CONTENT_URI, null, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        if (cursor != null) {
+            ArrayList<Message> messageList = new ArrayList<>();
+            if (cursor.moveToFirst()) {
+                do {
+                    Message message = new Message(cursor);
+                    messageList.add(message);
+                } while (cursor.moveToNext());
+                chatList = messageList;
+                adapter.setDatas(chatList);
+                scrollToListBottom();
+            }
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
 
     TextWatcher watcher = new TextWatcher() {
         @Override
@@ -212,6 +313,10 @@ public class ChatActivity extends AppCompatActivity
     private void addItemToList(Message chat) {
         chatList.add(chat);
         adapter.notifyDataSetChanged();
+        scrollToListBottom();
+    }
+
+    private void scrollToListBottom() {
         recyclerView.scrollToPosition(chatList.size() - 1);
     }
 
@@ -232,6 +337,7 @@ public class ChatActivity extends AppCompatActivity
         }
     }
 
+
     Runnable typingRunnable = new Runnable() {
         @Override
         public void run() {
@@ -244,12 +350,8 @@ public class ChatActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(SocketIOService.KEY_BROADCAST_MESSAGE)) {
-                String senderId = intent.getStringExtra("sender_id");
                 String senderName = intent.getStringExtra("sender_name");
                 String receiverId = intent.getStringExtra("receiver_id");
-                String message = intent.getStringExtra("message");
-                String imageUrl = intent.getStringExtra("image_url");
-                MessageType messageType = MessageType.getMessageType(intent.getIntExtra("message_type", MessageType.TEXT.getValue()));
                 int event = intent.getIntExtra("event", -1);
                 if (receiverId != null && receiverId.equals(mChat.getId())) {
                     switch (event) {
@@ -259,18 +361,8 @@ public class ChatActivity extends AppCompatActivity
                             mHandler.postDelayed(typingRunnable, TYPING_TIME_OUT);
                             break;
                         case SocketIOService.EVENT_TYPE_MESSAGE:
-                            Message chat = new Message.Builder()
-                                    .receiverId(receiverId)
-                                    .senderId(senderId)
-                                    .senderName(senderName)
-                                    .receiverName(sessionManager.getName())
-                                    .message(message)
-                                    .imageUrl(imageUrl)
-                                    .type(mChat.getType())
-                                    .messageType(messageType)
-                                    .time(System.currentTimeMillis())
-                                    .build();
-                            addItemToList(chat);
+                            // do nothing for now
+
                             break;
                     }
                 } else {

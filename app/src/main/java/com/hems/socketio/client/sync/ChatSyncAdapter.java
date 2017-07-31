@@ -34,7 +34,7 @@ import retrofit2.Call;
  */
 public class ChatSyncAdapter extends AbstractThreadedSyncAdapter {
     private static final String TAG = ChatSyncAdapter.class.getSimpleName();
-    private static final int MAX_PAGE_SIZE = 50;
+    public static final int MAX_PAGE_SIZE = 50;
     private int pageNo = 1;
     private boolean isSyncing = false;
     // Global variables
