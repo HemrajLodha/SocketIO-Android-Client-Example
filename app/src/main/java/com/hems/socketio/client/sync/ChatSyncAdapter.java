@@ -225,7 +225,7 @@ public class ChatSyncAdapter extends AbstractThreadedSyncAdapter {
         // Synchronize by performing batch update
         Log.i(TAG, "Merge solution ready, applying batch update...");
         mContentResolver.applyBatch(DatabaseContract.AUTHORITY, batch);
-        mContentResolver.notifyChange(DatabaseContract.TableChat.CONTENT_URI, // URI where data was modified
+        mContentResolver.notifyChange(DatabaseContract.TableChat.CONTENT_URI_CHAT_WITH_LAST_MESSAGE, // URI where data was modified
                 null, // No local observer
                 false); // IMPORTANT: Do not sync to network
     }

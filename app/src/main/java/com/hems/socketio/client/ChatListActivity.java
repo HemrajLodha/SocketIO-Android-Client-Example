@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.hems.socketio.client.adapter.ChatListRecyclerAdapter;
 import com.hems.socketio.client.api.ChatService;
 import com.hems.socketio.client.api.RetrofitCall;
@@ -30,6 +33,8 @@ import com.hems.socketio.client.provider.QueryUtils;
 import com.hems.socketio.client.provider.SQLiteHelper;
 import com.hems.socketio.client.service.SocketIOService;
 import com.hems.socketio.client.sync.ChatSyncAdapter;
+import com.hems.socketio.client.utils.FileUtils;
+import com.hems.socketio.client.utils.PermissionUtils;
 import com.hems.socketio.client.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -42,6 +47,8 @@ public class ChatListActivity extends AppCompatActivity
     private ArrayList<Chat> list;
     private SessionManager sessionManager;
     private Chat mChat;
+    private FloatingActionMenu fabMenu;
+    private View parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,18 +67,36 @@ public class ChatListActivity extends AppCompatActivity
         startService(service);
 
         setContentView(R.layout.activity_chat_list);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        parentLayout = findViewById(R.id.parentLayout);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         adapter = new ChatListRecyclerAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
+        fabMenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
         findViewById(R.id.menu_add_chat).setOnClickListener(this);
         findViewById(R.id.menu_add_contact).setOnClickListener(this);
+        // perform chat sync
         ChatSyncAdapter.performSync();
         getLoaderManager().initLoader(101, null, this);
-       // FileUtils.backUpSqliteDb();
+        /*if (PermissionUtils.checkForPermission(this,
+                PermissionUtils.PERMISSION_READ_STORAGE,
+                PermissionUtils.PERMISSION_READ_STORAGE_REQ)) {
+            FileUtils.backUpSqliteDb();
+        }*/
+        parentLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (fabMenu.isOpened()) {
+                    fabMenu.close(true);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -156,8 +181,8 @@ public class ChatListActivity extends AppCompatActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DatabaseContract.TableChat.CONTENT_URI,
-                DatabaseContract.TableChat.PROJECTION, null, null, null);
+        return new CursorLoader(this, DatabaseContract.TableChat.CONTENT_URI_CHAT_WITH_LAST_MESSAGE,
+                null, null, null, null);
     }
 
     @Override
@@ -181,7 +206,7 @@ public class ChatListActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.menu_add_chat:
                 Intent intent = new Intent(ChatListActivity.this, CreateChatActivity.class);
                 startActivity(intent);
@@ -191,6 +216,6 @@ public class ChatListActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
 
-    }
+        }
     }
 }

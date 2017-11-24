@@ -1,5 +1,6 @@
 package com.hems.socketio.client.utils;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -14,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.hems.socketio.client.Constants;
+import com.hems.socketio.client.MyApplication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -195,6 +198,16 @@ public class Utils extends BaseUtils {
             e.printStackTrace();
         }
         return allowList;
+    }
+
+    public static String generateStringObjectId() {
+        UUID uniqueKey = UUID.randomUUID();
+        return uniqueKey.toString();
+    }
+
+    public static boolean isChatActivityRunning(Class activityClass) {
+        Activity activity = MyApplication.getRunningActivity();
+        return activity != null && activityClass.getCanonicalName().equalsIgnoreCase(activity.getClass().getCanonicalName());
     }
 
 }

@@ -13,16 +13,19 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import com.hems.socketio.client.ChatActivity;
 import com.hems.socketio.client.api.MessageService;
 import com.hems.socketio.client.api.RetrofitCall;
 import com.hems.socketio.client.api.RetrofitCallback;
 import com.hems.socketio.client.enums.MessageType;
+import com.hems.socketio.client.helper.NotificationHelper;
 import com.hems.socketio.client.model.Chat;
 import com.hems.socketio.client.model.Message;
 import com.hems.socketio.client.provider.QueryUtils;
 import com.hems.socketio.client.utils.FileUtils;
 import com.hems.socketio.client.utils.MessageUtils;
 import com.hems.socketio.client.utils.SessionManager;
+import com.hems.socketio.client.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +33,10 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -65,11 +71,11 @@ public class SocketIOService extends Service implements SocketEventListener.List
     private boolean mTyping;
     private Queue<Message> chatQueue;
 
-
     private Looper mServiceLooper;
     private ServiceHandler mServiceHandler;
     private HeartBeat heartBeat;
     private String mUserId;
+    private ConcurrentHashMap<String, SocketEventListener> listenersMap;
 
     // Handler that receives messages from the thread
     private final class ServiceHandler extends Handler {
@@ -105,6 +111,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
     public void onCreate() {
         super.onCreate();
         chatQueue = new LinkedList<>();
+        listenersMap = new ConcurrentHashMap<>();
         // background priority so CPU-intensive work will not disrupt our UI.
         HandlerThread thread = new HandlerThread(TAG + "Args",
                 THREAD_PRIORITY_BACKGROUND);
@@ -119,12 +126,11 @@ public class SocketIOService extends Service implements SocketEventListener.List
             throw new RuntimeException(e);
         }
 
-        mSocket.on(Socket.EVENT_CONNECT, new SocketEventListener(Socket.EVENT_CONNECT, this));
-        mSocket.on(Socket.EVENT_DISCONNECT, new SocketEventListener(Socket.EVENT_DISCONNECT, this));
-        mSocket.on(Socket.EVENT_CONNECT_ERROR, new SocketEventListener(Socket.EVENT_CONNECT_ERROR, this));
-        mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, new SocketEventListener(Socket.EVENT_CONNECT_TIMEOUT, this));
-        mSocket.on(EVENT_MESSAGE, new SocketEventListener(EVENT_MESSAGE, this));
-        mSocket.on(EVENT_RECEIVED, new SocketEventListener(EVENT_RECEIVED, this));
+        getSocketListener();
+
+        for (Map.Entry<String, SocketEventListener> entry : listenersMap.entrySet()) {
+            mSocket.on(entry.getKey(), entry.getValue());
+        }
         /*mSocket.on("user joined", new SocketEventListener("user joined", this));
         mSocket.on("user left", new SocketEventListener("user left", this));
         mSocket.on("typing", new SocketEventListener("typing", this));
@@ -132,6 +138,15 @@ public class SocketIOService extends Service implements SocketEventListener.List
         mSocket.connect();
         heartBeat = new HeartBeat(this);
         heartBeat.start();
+    }
+
+    private void getSocketListener() {
+        listenersMap.put(Socket.EVENT_CONNECT, new SocketEventListener(Socket.EVENT_CONNECT, this));
+        listenersMap.put(Socket.EVENT_DISCONNECT, new SocketEventListener(Socket.EVENT_DISCONNECT, this));
+        listenersMap.put(Socket.EVENT_CONNECT_ERROR, new SocketEventListener(Socket.EVENT_CONNECT_ERROR, this));
+        listenersMap.put(Socket.EVENT_CONNECT_TIMEOUT, new SocketEventListener(Socket.EVENT_CONNECT_TIMEOUT, this));
+        listenersMap.put(EVENT_MESSAGE, new SocketEventListener(EVENT_MESSAGE, this));
+        listenersMap.put(EVENT_RECEIVED, new SocketEventListener(EVENT_RECEIVED, this));
     }
 
     @Nullable
@@ -219,6 +234,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
     private void sendMessage(Message message, int event) {
         JSONObject chat = new JSONObject();
         try {
+            chat.put("message_id", message.getId());
             chat.put("sender_id", message.getSenderId());
             chat.put("sender_name", message.getSenderName());
             chat.put("receiver_id", message.getReceiverId());
@@ -229,6 +245,7 @@ public class SocketIOService extends Service implements SocketEventListener.List
                 chat.put("image_url", CHAT_IMAGE_URL + message.getImageUrl());
             }
             chat.put("message_type", message.getMessageType().getValue());
+            chat.put("date", message.getTime());
             chat.put("event", event);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -294,12 +311,9 @@ public class SocketIOService extends Service implements SocketEventListener.List
         mUserId = null;
         // clear chat queue if service stop
         //chatQueue.clear();
-        mSocket.off(Socket.EVENT_CONNECT, new SocketEventListener(Socket.EVENT_CONNECT, this));
-        mSocket.off(Socket.EVENT_DISCONNECT, new SocketEventListener(Socket.EVENT_DISCONNECT, this));
-        mSocket.off(Socket.EVENT_CONNECT_ERROR, new SocketEventListener(Socket.EVENT_CONNECT_ERROR, this));
-        mSocket.off(Socket.EVENT_CONNECT_TIMEOUT, new SocketEventListener(Socket.EVENT_CONNECT_TIMEOUT, this));
-        mSocket.off(EVENT_MESSAGE, new SocketEventListener(EVENT_MESSAGE, this));
-        mSocket.off(EVENT_RECEIVED, new SocketEventListener(EVENT_RECEIVED, this));
+        for (Map.Entry<String, SocketEventListener> entry : listenersMap.entrySet()) {
+            mSocket.off(entry.getKey(), entry.getValue());
+        }
         Log.w(TAG, "onStop Service");
         /*mSocket.off("user joined", new SocketEventListener("user joined", this));
         mSocket.off("user left", new SocketEventListener("user left", this));
@@ -347,24 +361,30 @@ public class SocketIOService extends Service implements SocketEventListener.List
                     intent.setAction(KEY_BROADCAST_MESSAGE);
                     int messageEvent = data.getInt("event");
                     MessageType messageType = MessageType.getMessageType(data.getInt("message_type"));
+                    String messageId = data.has("message_id") ? data.getString("message_id") : "";
                     String senderId = data.getString("sender_id");
                     String senderName = data.getString("sender_name");
                     String message = data.has("message") ? data.getString("message") : "";
                     String imageUrl = data.has("image_url") ? data.getString("image_url") : "";
                     String receiverId = data.getString("receiver_id");
+                    long date = data.getLong("date");
 
                     if (messageEvent == EVENT_TYPE_MESSAGE) {
                         Message chat = new Message.Builder()
+                                .messageId(messageId)
                                 .receiverId(receiverId)
                                 .senderId(senderId)
                                 .senderName(senderName)
                                 .message(message)
                                 .imageUrl(imageUrl)
                                 .messageType(messageType)
-                                .time(System.currentTimeMillis())
+                                .time(date)
                                 .build();
                         QueryUtils.saveMessage(this, chat);
-                        MessageUtils.playNotificationRingtone(getApplicationContext()); // play notification sound
+                        //MessageUtils.playNotificationRingtone(getApplicationContext()); // play notification sound
+                        if (!Utils.isChatActivityRunning(ChatActivity.class.getClass())) {
+                            NotificationHelper.generateNotification(this, senderName, message);
+                        }
                     }
                     intent.putExtra("receiver_id", receiverId);
                     intent.putExtra("sender_id", senderId);
@@ -376,53 +396,6 @@ public class SocketIOService extends Service implements SocketEventListener.List
                     e.printStackTrace();
                 }
                 break;
-           /* case "user joined":
-                data = (JSONObject) args[0];
-                int numUsers;
-                try {
-                    username = data.getString("username");
-                    numUsers = data.getInt("numUsers");
-                    Log.w(TAG, "onUserJoined : " + username);
-                } catch (JSONException e) {
-                    Log.e(TAG, e.getMessage());
-                    return;
-                }
-                // TODO add to log
-                break;
-            case "user left":
-                data = (JSONObject) args[0];
-                try {
-                    username = data.getString("username");
-                    numUsers = data.getInt("numUsers");
-                    Log.w(TAG, "onUserLeft : " + username);
-                } catch (JSONException e) {
-                    Log.e(TAG, e.getMessage());
-                    return;
-                }
-                //TODO
-                break;
-            case "typing":
-                data = (JSONObject) args[0];
-                try {
-                    username = data.getString("username");
-                    Log.w(TAG, "onTyping : " + username);
-                } catch (JSONException e) {
-                    Log.e(TAG, e.getMessage());
-                    return;
-                }
-                // TODO typing
-                break;
-            case "stop typing":
-                data = (JSONObject) args[0];
-                try {
-                    username = data.getString("username");
-                    Log.w(TAG, "onStopTyping : " + username);
-                } catch (JSONException e) {
-                    Log.e(TAG, e.getMessage());
-                    return;
-                }
-                // TODO typing
-                break;*/
         }
     }
 }

@@ -152,6 +152,7 @@ public class Message extends DataResponse<ArrayList<Message>> implements Parcela
 
 
     public static class Builder {
+        private String id;
         private String mReceiverId;
         private String mSenderId;
         private String mSenderName;
@@ -163,6 +164,11 @@ public class Message extends DataResponse<ArrayList<Message>> implements Parcela
         private ChatType mType;
         private MessageType messageType;
         private long mTime;
+
+        public Builder messageId(String id) {
+            this.id = id;
+            return this;
+        }
 
         public Builder receiverId(String mReceiverId) {
             this.mReceiverId = mReceiverId;
@@ -216,6 +222,7 @@ public class Message extends DataResponse<ArrayList<Message>> implements Parcela
 
         public Message build() {
             Message message = new Message();
+            message.id = id;
             message.mType = mType;
             message.messageType = messageType;
             message.mStatus = SENDING;

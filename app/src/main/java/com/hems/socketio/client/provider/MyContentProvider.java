@@ -21,6 +21,7 @@ public class MyContentProvider extends ContentProvider {
     private static final int CHAT_MESSAGES = 6;
     private static final int CHAT_MESSAGES_ID = 7;
     private static final int MESSAGE_ID = 8;
+    private static final int CHAT_WITH_MESSAGE = 9;
 
     private static final UriMatcher sURIMatcher = new UriMatcher(
             UriMatcher.NO_MATCH);
@@ -34,6 +35,7 @@ public class MyContentProvider extends ContentProvider {
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.PATH_CHAT_MESSAGES, CHAT_MESSAGES);
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.PATH_CHAT_MESSAGES + "/*", CHAT_MESSAGES_ID);
         sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableMessage.BASE_PATH + "/*", MESSAGE_ID);
+        sURIMatcher.addURI(DatabaseContract.AUTHORITY, DatabaseContract.TableChat.PATH_CHAT_WITH_LAST_MESSAGE, CHAT_WITH_MESSAGE);
     }
 
     public MyContentProvider() {
@@ -197,6 +199,21 @@ public class MyContentProvider extends ContentProvider {
                         "ORDER BY M." + DatabaseContract.TableMessage.COLUMN_CREATE_DATE + " ASC " +
                         "LIMIT 20 OFFSET (SELECT COUNT(*) FROM " + DatabaseContract.TableMessage.TABLE_NAME + " " +
                         "WHERE " + DatabaseContract.TableMessage.COLUMN_CHAT_ID + "='" + ((uriType == CHAT_MESSAGES) ? "?" : uri.getLastPathSegment()) + "')-20";
+                break;
+            case CHAT_WITH_MESSAGE:
+                mQuery = "SELECT C." + DatabaseContract.TableChat.COLUMN_ID +
+                        ",C." + DatabaseContract.TableChat.COLUMN_NAME +
+                        ",C." + DatabaseContract.TableChat.COLUMN_TYPE +
+                        ",C." + DatabaseContract.TableChat.COLUMN_USERS +
+                        ",C." + DatabaseContract.TableChat.COLUMN_ADMIN_IDS +
+                        ",C." + DatabaseContract.TableChat.COLUMN_LAST_MESSAGE_ID +
+                        ",C." + DatabaseContract.TableChat.COLUMN_UPDATE_DATE +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_MESSAGE +
+                        ",M." + DatabaseContract.TableMessage.COLUMN_IMAGE_URL + " " +
+                        "FROM " + DatabaseContract.TableChat.TABLE_NAME + " C " +
+                        "LEFT JOIN " + DatabaseContract.TableMessage.TABLE_NAME + " M " +
+                        "ON M." + DatabaseContract.TableMessage.COLUMN_ID + "=C." + DatabaseContract.TableChat.COLUMN_LAST_MESSAGE_ID + " " +
+                        "ORDER BY C." + DatabaseContract.TableChat.COLUMN_UPDATE_DATE + " DESC ";
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

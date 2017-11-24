@@ -557,7 +557,7 @@ public class FileUtils {
         // Implicitly allow the user to select a particular kind of data
         final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         // The MIME data type filter
-        intent.setType("*/*");
+        intent.setType("image/*");
         // show only local files or all
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, localOnly);
         // Only return URIs that can be opened with ContentResolver

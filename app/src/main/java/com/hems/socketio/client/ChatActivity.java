@@ -49,6 +49,7 @@ import com.hems.socketio.client.utils.ImageUtil;
 import com.hems.socketio.client.utils.MessageUtils;
 import com.hems.socketio.client.utils.PermissionUtils;
 import com.hems.socketio.client.utils.SessionManager;
+import com.hems.socketio.client.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +57,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -79,6 +81,7 @@ public class ChatActivity extends AppCompatActivity
     private SessionManager sessionManager;
     private Handler mHandler;
     private ProgressDialog progressDialog;
+    private List<String> allowedMimeTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +123,7 @@ public class ChatActivity extends AppCompatActivity
         etMessage.addTextChangedListener(watcher);
 
         getMessages();
-
+        allowedMimeTypes = Utils.getAllowedFileMimeTypes(this);
     }
 
 
@@ -266,7 +269,12 @@ public class ChatActivity extends AppCompatActivity
                 // If the file selection was successful
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
-                        sendMessage(SocketIOService.EVENT_TYPE_MESSAGE, MessageType.PICTURE, data.getData());
+                        String mimeType = FileUtils.getMimeType(this, data.getData());
+                        if (allowedMimeTypes.contains(mimeType)) {
+                            sendMessage(SocketIOService.EVENT_TYPE_MESSAGE, MessageType.PICTURE, data.getData());
+                        } else {
+                            Toast.makeText(this, "Invalid File Type", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 break;
@@ -287,18 +295,33 @@ public class ChatActivity extends AppCompatActivity
     }
 
     private void sendMessage(int eventType, MessageType messageType, String message, Uri imageUri) {
+        Message chat;
+        if (eventType == SocketIOService.EVENT_TYPE_TYPING) {
+            chat = new Message.Builder()
+                    .receiverId(mChat.getId())
+                    .senderId(sessionManager.getUserId())
+                    .senderName(sessionManager.getName())
+                    .receiverName(mChat.getName())
+                    .type(mChat.getType())
+                    .messageType(messageType)
+                    .time(System.currentTimeMillis())
+                    .build();
+        } else {
+            String messageId = Utils.generateStringObjectId();
+            chat = new Message.Builder()
+                    .messageId(messageId)
+                    .receiverId(mChat.getId())
+                    .senderId(sessionManager.getUserId())
+                    .senderName(sessionManager.getName())
+                    .receiverName(mChat.getName())
+                    .message(message)
+                    .imageUri(imageUri)
+                    .type(mChat.getType())
+                    .messageType(messageType)
+                    .time(System.currentTimeMillis())
+                    .build();
+        }
 
-        Message chat = new Message.Builder()
-                .receiverId(mChat.getId())
-                .senderId(sessionManager.getUserId())
-                .senderName(sessionManager.getName())
-                .receiverName(mChat.getName())
-                .message(message)
-                .imageUri(imageUri)
-                .type(mChat.getType())
-                .messageType(messageType)
-                .time(System.currentTimeMillis())
-                .build();
 
         Intent service = new Intent(this, SocketIOService.class);
         service.putExtra(SocketIOService.EXTRA_EVENT_TYPE, eventType);
@@ -327,6 +350,7 @@ public class ChatActivity extends AppCompatActivity
             IntentFilter intentFilter = new IntentFilter(SocketIOService.KEY_BROADCAST_MESSAGE);
             registerReceiver(broadcastReceiver, intentFilter);
         }
+        MyApplication.setRunningActivity(this);
     }
 
     @Override
@@ -335,6 +359,7 @@ public class ChatActivity extends AppCompatActivity
         if (broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);
         }
+        MyApplication.setRunningActivity(null);
     }
 
 

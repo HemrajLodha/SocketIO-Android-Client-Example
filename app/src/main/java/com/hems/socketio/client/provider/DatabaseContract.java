@@ -112,8 +112,12 @@ public interface DatabaseContract {
                 };
 
         String BASE_PATH = "chats";
+        String PATH_CHAT_WITH_LAST_MESSAGE = "chatlastmessage";
         Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 + "/" + BASE_PATH);
+        Uri CONTENT_URI_CHAT_WITH_LAST_MESSAGE = Uri.parse("content://" + AUTHORITY
+                + "/" + PATH_CHAT_WITH_LAST_MESSAGE);
+
         String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
                 + "/" + BASE_PATH;
         String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE

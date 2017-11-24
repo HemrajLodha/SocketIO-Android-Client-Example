@@ -28,16 +28,19 @@ public class Chat extends DataResponse<ArrayList<Chat>> implements Parcelable {
     @SerializedName("last_message")
     private String lastMessage;
     @SerializedName("update_date")
+    private String imageUrl;
     private long updateDate;
 
     public Chat(Cursor cursor) {
-        id = cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_CHAT_ID);
-        type = ChatType.getChatType(cursor.getInt(DatabaseContract.TableChat.INDEX_COLUMN_TYPE));
-        name = cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_NAME);
-        users = new Gson().fromJson(cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_USERS), new TypeToken<List<Contact>>(){}.getType());
-        admin_ids = new Gson().fromJson(cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_ADMIN_IDS),new TypeToken<List<String>>(){}.getType());
-        last_message_id = cursor.getString(DatabaseContract.TableChat.INDEX_COLUMN_LAST_MESSAGE_ID);
-        updateDate = cursor.getLong(DatabaseContract.TableChat.INDEX_COLUMN_UPDATE_DATE);
+        id = cursor.getString(0);
+        name = cursor.getString(1);
+        type = ChatType.getChatType(cursor.getInt(2));
+        users = new Gson().fromJson(cursor.getString(3), new TypeToken<List<Contact>>(){}.getType());
+        admin_ids = new Gson().fromJson(cursor.getString(4),new TypeToken<List<String>>(){}.getType());
+        last_message_id = cursor.getString(5);
+        updateDate = cursor.getLong(6);
+        lastMessage = cursor.getString(7);
+        imageUrl = cursor.getString(8);
     }
 
     protected Chat(Parcel in) {
@@ -49,6 +52,7 @@ public class Chat extends DataResponse<ArrayList<Chat>> implements Parcelable {
         admin_ids = in.createStringArrayList();
         last_message_id = in.readString();
         lastMessage = in.readString();
+        imageUrl = in.readString();
         updateDate = in.readLong();
         data = in.createTypedArrayList(Chat.CREATOR);
     }
@@ -63,6 +67,7 @@ public class Chat extends DataResponse<ArrayList<Chat>> implements Parcelable {
         dest.writeStringList(admin_ids);
         dest.writeString(last_message_id);
         dest.writeString(lastMessage);
+        dest.writeString(imageUrl);
         dest.writeLong(updateDate);
         dest.writeTypedList(data);
     }
@@ -154,5 +159,13 @@ public class Chat extends DataResponse<ArrayList<Chat>> implements Parcelable {
 
     public void setLast_message_id(String last_message_id) {
         this.last_message_id = last_message_id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

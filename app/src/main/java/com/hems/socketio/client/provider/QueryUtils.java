@@ -31,18 +31,6 @@ public final class QueryUtils {
     }
 
     public static void addChat(Context context, Chat chat) {
-        String usersJson = new Gson().toJson(chat.getUsers());
-        String adminIdsJson = new Gson().toJson(chat.getAdmin_ids());
-
-        ContentValues cv = new ContentValues();
-        cv.put(DatabaseContract.TableChat.COLUMN_ID, chat.getId());
-        cv.put(DatabaseContract.TableChat.COLUMN_NAME, chat.getName());
-        cv.put(DatabaseContract.TableChat.COLUMN_USERS, usersJson);
-        cv.put(DatabaseContract.TableChat.COLUMN_ADMIN_IDS, adminIdsJson);
-        cv.put(DatabaseContract.TableChat.COLUMN_LAST_MESSAGE_ID, chat.getLastMessage());
-        cv.put(DatabaseContract.TableChat.COLUMN_TYPE, chat.getType().getValue());
-        cv.put(DatabaseContract.TableChat.COLUMN_UPDATE_DATE, chat.getUpdateDate());
-
         Cursor cursorExists = context.getContentResolver().
                 query(Uri.parse(DatabaseContract.TableChat.CONTENT_URI + "/" + chat.getId()),
                         DatabaseContract.TableChat.PROJECTION_ID, null, null, null);
@@ -54,12 +42,21 @@ public final class QueryUtils {
             }
             cursorExists.close();
         }
-        if (isExists) {
-            Log.i(TAG, "chat updated");
-            context.getContentResolver().update(Uri.parse(DatabaseContract.TableChat.CONTENT_URI + "/" + chat.getId()), cv, null, null);
-        } else {
-            Log.i(TAG, "new chat inserted");
+        if (!isExists) {
+            String usersJson = new Gson().toJson(chat.getUsers());
+            String adminIdsJson = new Gson().toJson(chat.getAdmin_ids());
+
+            ContentValues cv = new ContentValues();
+            cv.put(DatabaseContract.TableChat.COLUMN_ID, chat.getId());
+            cv.put(DatabaseContract.TableChat.COLUMN_NAME, chat.getName());
+            cv.put(DatabaseContract.TableChat.COLUMN_USERS, usersJson);
+            cv.put(DatabaseContract.TableChat.COLUMN_ADMIN_IDS, adminIdsJson);
+            cv.put(DatabaseContract.TableChat.COLUMN_LAST_MESSAGE_ID, chat.getLastMessage());
+            cv.put(DatabaseContract.TableChat.COLUMN_TYPE, chat.getType().getValue());
+            cv.put(DatabaseContract.TableChat.COLUMN_UPDATE_DATE, chat.getUpdateDate());
             context.getContentResolver().insert(DatabaseContract.TableChat.CONTENT_URI, cv);
+            Log.i(TAG, "new chat inserted");
+            context.getContentResolver().notifyChange(DatabaseContract.TableChat.CONTENT_URI_CHAT_WITH_LAST_MESSAGE, null);
         }
     }
 
@@ -94,6 +91,12 @@ public final class QueryUtils {
         }
     }
 
+    /***
+     * sync some message first time
+     * @param context
+     * @param chatId
+     * @param messages
+     */
     public static void saveLastMessages(Context context, String chatId, ArrayList<Message> messages) {
         ArrayList<ContentProviderOperation> batch = new ArrayList<>();
         for (Message message : messages) {
@@ -115,6 +118,11 @@ public final class QueryUtils {
         }
     }
 
+    /***
+     * save message
+     * @param context
+     * @param message
+     */
     public static void saveMessage(Context context, Message message) {
         ContentValues cv = new ContentValues();
         cv.put(DatabaseContract.TableMessage.COLUMN_ID, message.getId());
@@ -126,6 +134,24 @@ public final class QueryUtils {
         cv.put(DatabaseContract.TableMessage.COLUMN_TYPE, message.getMessageType().getValue());
         cv.put(DatabaseContract.TableMessage.COLUMN_CREATE_DATE, message.getTime());
         context.getContentResolver().insert(DatabaseContract.TableMessage.CONTENT_URI, cv);
+        // update last message id in chat table
+        saveMessageIdInChat(context, message.getReceiverId(), message.getId(), message.getTime());
+        // notify chat message uri
         context.getContentResolver().notifyChange(DatabaseContract.TableMessage.CONTENT_URI_CHAT_MESSAGES, null);
+        context.getContentResolver().notifyChange(DatabaseContract.TableChat.CONTENT_URI_CHAT_WITH_LAST_MESSAGE, null);
+    }
+
+    /***
+     * update last message id in chat table
+     * @param context
+     * @param chatId
+     * @param messageId
+     */
+    public static void saveMessageIdInChat(Context context, String chatId, String messageId, long updateTime) {
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseContract.TableChat.COLUMN_LAST_MESSAGE_ID, messageId);
+        cv.put(DatabaseContract.TableChat.COLUMN_UPDATE_DATE, updateTime);
+        context.getContentResolver().update(Uri.parse(DatabaseContract.TableChat.CONTENT_URI + "/" + chatId),
+                cv, null, null);
     }
 }
